@@ -62,7 +62,11 @@ class App extends React.Component {
       <Router>
         <Wrapper>
           <Helment titleTemplate={`%s - Bhashkar Sharma`} />
-          <div>[ ⚠️ Site Under Construction 🚧 ]</div>
+          <div>
+            [ <span role="img" aria-label="Warning">⚠️</span> 
+            Site Under Construction 
+            <span role="img" aria-label="Construction">🚧</span> ]
+          </div>
           <Title>{titles[Math.floor(Math.random() * titles.length)]}</Title>
           <Nav>
             {routes.filter((i,e) => e < 4).map((route, i) => (
