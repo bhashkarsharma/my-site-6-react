@@ -1,6 +1,6 @@
 import Digit from './Digit'
 import Helmet from 'react-helmet'
-import Page from '../../components/Page'
+import LabPage from '../../components/LabPage'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -49,7 +49,7 @@ export default class Segment extends React.Component {
 
     render() {
         return (
-            <Page>
+            <LabPage>
                 <h1>Segment</h1>
                 <SegmentContainer>
                     <div className="error-message">Your screen is too small.
@@ -63,7 +63,7 @@ export default class Segment extends React.Component {
                     </div>
                 </SegmentContainer>
                 <Helmet title='Segment' />
-            </Page>
+            </LabPage>
         )
     }
 }

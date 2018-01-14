@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export default styled.div`
-  max-width: 700px;
   margin: auto;
 
   h1 {
@@ -10,14 +9,5 @@ export default styled.div`
     font-weight: normal;
     line-height: 0.7em;
     text-transform: capitalize;
-  }
-  p {
-    font-family: georgia, "times new roman", times, serif;
-  }
-  pre {
-    border: 1px solid;
-    max-width: 100%;
-    overflow: scroll;
-    padding: 2vmin;
   }
 `

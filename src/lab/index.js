@@ -1,3 +1,4 @@
+import Digilog from './Digilog/Digilog'
 import Helmet from 'react-helmet'
 import Helvetica from './Helvetica/Helvetica'
 import { Link } from 'react-router-dom'
@@ -17,6 +18,11 @@ export const labRoutes = [
         title: 'Segment',
         path: 'segment',
         component: Segment
+    },
+    {
+        title: 'Digilog',
+        path: 'digilog',
+        component: Digilog
     }
 ]
 

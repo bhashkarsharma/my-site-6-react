@@ -1,5 +1,5 @@
 import Helmet from 'react-helmet'
-import Page from '../../components/Page'
+import LabPage from '../../components/LabPage'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -142,7 +142,7 @@ export default class Helvetica extends React.Component {
 
   render() {
     return (
-      <Page>
+      <LabPage>
         <h1>Helvetica</h1>
         <Clock>
           {
@@ -158,7 +158,7 @@ export default class Helvetica extends React.Component {
           }
         </Clock>
         <Helmet title='Helvetica' />
-      </Page>
+      </LabPage>
     )
   }
 }

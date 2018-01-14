@@ -70,7 +70,7 @@ class App extends React.Component {
           <Helment titleTemplate={`%s - Bhashkar Sharma`} />
           <div style={{textAlign: 'center'}}>
             [ <span role="img" aria-label="Warning">⚠️</span>
-            &nbsp;Site Under Construction&nbsp;
+            &nbsp;Site Under Construction. Watch your step&nbsp;
             <span role="img" aria-label="Construction">🚧</span> ]
           </div>
           <Title>{titles[Math.floor(Math.random() * titles.length)]}</Title>
