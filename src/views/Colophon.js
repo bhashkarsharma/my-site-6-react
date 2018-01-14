@@ -8,9 +8,10 @@ export default () => (
       <p>This website is powered using modern web technology.</p>
       <p>The underlying tools include:</p>
       <ul>
-          <li>Create-React-App</li>
-          <li>Styled-Components</li>
+          <li>Minimalist and brutalist design</li>
+          <li>React</li>
           <li>React-Snapshot</li>
+          <li>Styled-Components</li>
           <li>Markdown</li>
           <li>S3 and Cloudfront</li>
           <li>Github</li>
