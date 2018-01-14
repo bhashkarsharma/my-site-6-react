@@ -6,9 +6,10 @@ export default () => (
     <Page>
       <h1>Colophon</h1>
       <p>This website is powered using modern web technology.</p>
-      <p>The underlying tools include:</p>
+      <p>The underlying tools and principles include:</p>
       <ul>
           <li>Minimalist and brutalist design</li>
+          <li>Progressive WebApp</li>
           <li>React</li>
           <li>React-Snapshot</li>
           <li>Styled-Components</li>
@@ -17,7 +18,8 @@ export default () => (
           <li>Github</li>
           <li>Travis-CI</li>
       </ul>
-          ...and more
+          <p>...and more.</p>
+          <p>Minimum external resources are loaded, to keep the site snappy and performant.</p>
       <Helmet title='Colophon' />
     </Page>
   )
