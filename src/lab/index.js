@@ -29,8 +29,8 @@ export default class Lab extends React.Component {
         return <Page>
             <h1>Lab</h1>
             {labRoutes.map((r, i) => (
-                <Linkbox>
-                    <Link key={i} to={`${r.path}`}><Title>{r.title}</Title></Link>
+                <Linkbox key={i}>
+                    <Link to={`${r.path}`}><Title>{r.title}</Title></Link>
                 </Linkbox>
             ))}
             <Helmet title='Lab' />
