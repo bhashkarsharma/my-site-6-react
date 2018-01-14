@@ -1,0 +1,62 @@
+body {
+  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 4vmin;
+  hyphens: auto;
+  line-height: 1.6em;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  transition: all 0.3s;
+  z-index: 1;
+}
+
+a:before, a:after {
+  background: #0000ff;
+  content: '';
+  height: 3px;
+  left: 0;
+  position: absolute;
+  top: 100%;
+  transition: all 0.3s;
+  transform: scale(0.85);
+  width: 100%;
+}
+
+a:hover::before, a:hover::after {
+  transform: scale(1);
+}
+
+a:hover::before {
+  opacity: 1;
+  top: 0%;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+.video-box {
+  height: 0;
+  padding-bottom: 56.25%;
+  padding-top: 25px;
+  position: relative;
+}
+
+.video-box iframe {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+twitterwidget {
+  margin: auto;
+}
