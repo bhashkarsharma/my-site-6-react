@@ -15,6 +15,6 @@ export default styled.div`
     border: 1px solid;
     max-width: 100%;
     overflow: scroll;
-    padding: 2vw;
+    padding: 2vmin;
   }
 `

@@ -1,5 +1,6 @@
 import Helmet from 'react-helmet'
 import { Link } from 'react-router-dom'
+import Linkbox from'../components/Linkbox'
 import Page from '../components/Page'
 import Posts from '../posts'
 import React from 'react'
@@ -22,10 +23,10 @@ export default class Blog extends React.Component {
         <h1>Blog</h1>
         <Helmet title='Blog' />
         {Posts.map((p,i) => {
-          return <div key={i}>
+          return <Linkbox key={i}>
             <Link to={`/blog/${p.path}`}><Title>{p.title}</Title></Link>
             <Meta>{p.date}</Meta>
-          </div>
+          </Linkbox>
         })}
       </Page>
     )

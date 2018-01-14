@@ -1,17 +1,18 @@
 import Helmet from 'react-helmet'
+import { Link } from 'react-router-dom'
 import Page from '../components/Page'
 import React from 'react'
 import styled from 'styled-components'
 
 const Icons = styled.div`
   font-family: "FontAwesome";
-  font-size: 4vw;
-  margin-top: 4vw;
+  font-size: 10vmin;
+  margin: 5vmin 0;
   text-align: center;
 
   a {
-    margin: 0 1vw;
-    padding: 0.5vw;
+    margin: 0 1vmin;
+    padding: 0.5vmin;
     text-decoration: none;
     &:before, &:after {
       display: none;
@@ -59,6 +60,7 @@ export default () => (
           <i className="fas fa-at"></i>
       </a>
     </Icons>
+    <p>Read about <Link to='/colophon'>how this site was made</Link>.</p>
     <Helmet title='About' />
   </Page>
 )

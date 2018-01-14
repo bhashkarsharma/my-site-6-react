@@ -2,6 +2,7 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 
 import About from './views/About'
 import Blog from './views/Blog'
+import Colophon from './views/Colophon'
 import Helment from 'react-helmet'
 import Home from './views/Home'
 import Lab from './lab'
@@ -51,6 +52,11 @@ const baseRoutes = [
   {
     path: '/blog/:postUrl',
     component: Post
+  },
+  {
+    path: '/colophon',
+    component: Colophon,
+    exact: true
   }
 ]
 labRoutes.forEach(i => i.path = `/lab/${i.path}`)
@@ -62,9 +68,9 @@ class App extends React.Component {
       <Router>
         <Wrapper>
           <Helment titleTemplate={`%s - Bhashkar Sharma`} />
-          <div>
-            [ <span role="img" aria-label="Warning">⚠️</span> 
-            Site Under Construction 
+          <div style={{textAlign: 'center'}}>
+            [ <span role="img" aria-label="Warning">⚠️</span>
+            &nbsp;Site Under Construction&nbsp;
             <span role="img" aria-label="Construction">🚧</span> ]
           </div>
           <Title>{titles[Math.floor(Math.random() * titles.length)]}</Title>
