@@ -10,6 +10,7 @@ before_install:
   - cp -r posts/* $COPYLOC/public/posts
   - mkdir -p $COPYLOC/public/assets/images/posts
   - cp -r imgs/* $COPYLOC/public/assets/images/posts
+  - mkdir -p $COPYLOC/src/posts
   - cd $COPYLOC
   - rvm default
 install:

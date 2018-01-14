@@ -28,5 +28,5 @@ fs.writeFile(outputLoc, `export default ${JSON.stringify(arr, null, 4)}`, (err) 
     if (err) {
         return console.error(err)
     }
-    console.log('Posts have been indexed')
+    console.log(arr.length + ' posts have been indexed')
 })
