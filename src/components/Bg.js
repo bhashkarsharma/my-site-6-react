@@ -281,7 +281,7 @@ const BgBox = styled.div`
     width: 100%;
     z-index: -1;
     canvas {
-        opacity: 0.5;
+        opacity: 0.4;
     }
 `
 
