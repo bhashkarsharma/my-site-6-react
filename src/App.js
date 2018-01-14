@@ -1,6 +1,7 @@
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 
 import About from './views/About'
+import Bg from './components/Bg'
 import Blog from './views/Blog'
 import Colophon from './views/Colophon'
 import Helment from 'react-helmet'
@@ -66,26 +67,29 @@ export default class App extends React.Component {
   render() {
     return (
       <Router>
-        <Wrapper>
-          <Helment titleTemplate={`%s - Bhashkar Sharma`} />
-          <div style={{textAlign: 'center'}}>
-            [ <span role="img" aria-label="Warning">⚠️</span>
-            &nbsp;Site Under Construction. Watch your step&nbsp;
-            <span role="img" aria-label="Construction">🚧</span> ]
-          </div>
-          <Title>{titles[Math.floor(Math.random() * titles.length)]}</Title>
-          <Nav>
-            {routes.filter((i,e) => e < 4).map((route, i) => (
-              <NavLink key={i} {...route} />
-            ))}
-          </Nav>
-          <Switch>
-            {routes.map((route, i) => (
-              <Route key={i} {...route} />
-            ))}
-            <Route component={NoMatch} />
-          </Switch>
-        </Wrapper>
+        <div>
+          <Bg></Bg>
+          <Wrapper>
+            <Helment titleTemplate={`%s - Bhashkar Sharma`} />
+            <div style={{textAlign: 'center'}}>
+              [ <span role="img" aria-label="Warning">⚠️</span>
+              &nbsp;Site Under Construction. Watch your step&nbsp;
+              <span role="img" aria-label="Construction">🚧</span> ]
+            </div>
+            <Title>{titles[Math.floor(Math.random() * titles.length)]}</Title>
+            <Nav>
+              {routes.filter((i,e) => e < 4).map((route, i) => (
+                <NavLink key={i} {...route} />
+              ))}
+            </Nav>
+            <Switch>
+              {routes.map((route, i) => (
+                <Route key={i} {...route} />
+              ))}
+              <Route component={NoMatch} />
+            </Switch>
+          </Wrapper>
+        </div>
       </Router>
     )
   }
