@@ -14,7 +14,7 @@ export default class Post extends React.Component {
     }
 
     componentDidMount() {
-        const md = this.fetchPost(this.props.match.params.postUrl)
+        const md = this.fetchPost(this.props.match.params[0])
         md.then(i => {
             if (i && i.status === 200) {
                 return i.text()
@@ -29,7 +29,7 @@ export default class Post extends React.Component {
     fetchPost(url) {
         const filtered = Posts.filter(p => p.path === url)
         if (filtered.length > 0) {
-            return fetch('/posts/' + filtered[0].path + '.md')
+            return fetch('/posts/' + filtered[0].path.split('/').join('-') + '.md')
         } else {
             return new Promise(i => { i(null) })
         }

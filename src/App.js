@@ -50,7 +50,7 @@ const baseRoutes = [
     component: About
   },
   {
-    path: '/blog/:postUrl',
+    path: '/blog/*',
     component: Post
   },
   {
@@ -62,7 +62,7 @@ const baseRoutes = [
 labRoutes.forEach(i => i.path = `/lab/${i.path}`)
 const routes = [...baseRoutes, ...labRoutes]
 
-class App extends React.Component {
+export default class App extends React.Component {
   render() {
     return (
       <Router>
@@ -90,5 +90,3 @@ class App extends React.Component {
     )
   }
 }
-
-export default App

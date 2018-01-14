@@ -18,6 +18,9 @@ read(postLoc).forEach(file => {
     const meta = gm(fs.readFileSync(file, 'utf8'))
     let fn = file.split(/[\/]+/).pop()
     fn = fn.split('.md')[0]
+    for (let i=0; i<3; i++) {
+        fn = fn.replace('-', '/')
+    }
     meta.data['path'] = fn
     arr.push(meta.data)
 })
