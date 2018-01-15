@@ -2,6 +2,7 @@ import * as matter from 'gray-matter'
 
 import Helmet from 'react-helmet'
 import Markdown from 'react-remarkable'
+import Meta from '../components/Meta'
 import Page from '../components/Page'
 import Posts from '../posts'
 import React from 'react'
@@ -10,7 +11,7 @@ import { Redirect } from 'react-router-dom'
 export default class Post extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { post: { data: {}, content: '' }, redirect: false }
+        this.state = { post: { data: { date: '' }, content: '' }, redirect: false }
     }
 
     componentDidMount() {
@@ -40,6 +41,9 @@ export default class Post extends React.Component {
         return (
         <Page>
             <h1>{this.state.post.data.title}</h1>
+            {this.state.post.data.categories &&
+                <Meta> Published in <strong>{this.state.post.data.categories}</strong></Meta>}
+            <Meta> on {this.state.post.data.date.substring(0, 10)}</Meta>
             <Markdown source={this.state.post.content} options={options} />
             <Helmet title={this.state.post.data.title} />
             {this.state.redirect && <Redirect to='/404' />}
