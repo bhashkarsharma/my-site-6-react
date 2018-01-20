@@ -45,7 +45,7 @@ export default () => (
     <p>I love books; and attempt to write at times. I enjoy sharing my learnings on <a href="http://quora.com/Bhashkar-Sharma">Quora</a>, among other places.</p>
     <p>The excitement of learning new things is the reason I get out of bed in the morning.</p>
     <p>You can find my <a href="http://static.bhashkar.me/Resume_Jan2017.pdf">resume</a> here.</p>
-    <p>Read about <Link to='/colophon'>what went into this site</Link>.</p>
+    <p>Read about <Link to='/colophon'>what went into making this site</Link>.</p>
     <Icons>
       <a href="https://twitter.com/bhashkarsharma">
           <i className="fab fa-twitter"></i>

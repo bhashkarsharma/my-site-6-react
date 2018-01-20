@@ -268,7 +268,7 @@ const BgBox = styled.div`
     width: 100%;
     z-index: -1;
     canvas {
-        -webkit-mask-image: -webkit-gradient(linear, left top, right top,
+        mask-image: -webkit-gradient(linear, left top, right top,
             color-stop(0.00,  rgba(0,0,0,1)),
             color-stop(0.25,  rgba(0,0,0,0)),
             color-stop(0.75,  rgba(0,0,0,0)),

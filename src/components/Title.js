@@ -5,5 +5,6 @@ export default styled.h1`
   font-weight: normal;
   line-height: 1em;
   margin: 1rem 0;
+  text-align: center;
   text-transform: capitalize;
 `

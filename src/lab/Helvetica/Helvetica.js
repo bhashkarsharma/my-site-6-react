@@ -9,12 +9,15 @@ margin: 5vw auto;
 .row {
     font-family: Helvetica, Arial, sans-serif;
     line-height: 1em;
+    text-align: center;
+
     .item {
       display: inline-block;
       font-size: 3vw;
       height: 4vw;
       text-align: center;
       width: 4vw;
+      
       &.on {
         color: #808080;
       }

@@ -9,12 +9,12 @@ import Colophon from './views/Colophon'
 import Helment from 'react-helmet'
 import Home from './views/Home'
 import Lab from './lab'
+import Logo from './components/Logo'
 import Nav from './components/Nav'
 import NavLink from './components/NavLink'
 import NoMatch from './views/NoMatch'
 import Post from './views/Post'
 import React from 'react'
-import Title from './components/Title'
 import Wrapper from './components/Wrapper'
 import { labRoutes } from './lab'
 
@@ -63,12 +63,7 @@ export default class App extends React.Component {
           <Bg/>
           <Wrapper>
             <Helment titleTemplate={`%s - Bhashkar Sharma`} />
-            <div className="construction">
-              [ <span role="img" aria-label="Warning">⚠️</span>
-              &nbsp;Site Under Construction. Watch your step&nbsp;
-              <span role="img" aria-label="Construction">🚧</span> ]
-            </div>
-            <Title>BS</Title>
+            <Logo/>
             <Nav>
               {routes.filter((i,e) => e < 4).map((route, i) => (
                 <NavLink key={i} {...route} />
