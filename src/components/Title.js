@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 
 export default styled.h1`
-  font-size: 10vw;
-  font-weight: bold;
+  font-size: 2rem;
+  font-weight: normal;
   line-height: 1em;
-  margin: 1vw;
+  margin: 1rem 0;
+  text-transform: capitalize;
 `

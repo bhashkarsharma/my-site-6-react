@@ -6,6 +6,7 @@ import Linkbox from '../components/Linkbox'
 import Page from '../components/Page'
 import React from 'react'
 import Segment from './Segment/Segment'
+import Title from '../components/Title'
 import styled from 'styled-components'
 
 export const labRoutes = [
@@ -26,17 +27,18 @@ export const labRoutes = [
     }
 ]
 
-const Title = styled.div`
+const LinkTitle = styled.span`
+  margin-right: 0.5rem;
   text-transform: capitalize;
 `
 
 export default class Lab extends React.Component {
     render() {
         return <Page>
-            <h1>Lab</h1>
+            <Title>Lab</Title>
             {labRoutes.map((r, i) => (
                 <Linkbox key={i}>
-                    <Link to={`${r.path}`}><Title>{r.title}</Title></Link>
+                    <Link to={`${r.path}`}><LinkTitle>{r.title}</LinkTitle></Link>
                 </Linkbox>
             ))}
             <Helmet title='Lab' />

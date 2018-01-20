@@ -1,14 +1,15 @@
 import Helmet from 'react-helmet'
 import Page from '../components/Page'
 import React from 'react'
+import Title from '../components/Title'
 
 export default () => (
     <Page>
-      <h1>Colophon</h1>
+      <Title>Colophon</Title>
       <p>This website is powered using modern web technology.</p>
       <p>The underlying tools and principles include:</p>
       <ul>
-          <li>Minimalist and brutalist design</li>
+          <li>Minimalist design</li>
           <li>Progressive WebApp</li>
           <li>React</li>
           <li>React-Snapshot</li>

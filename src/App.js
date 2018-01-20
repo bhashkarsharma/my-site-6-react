@@ -1,3 +1,5 @@
+import './App.css'
+
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 
 import About from './views/About'
@@ -15,16 +17,6 @@ import React from 'react'
 import Title from './components/Title'
 import Wrapper from './components/Wrapper'
 import { labRoutes } from './lab'
-
-const titles = [
-  '𐌁𐌔',
-  '𐐒𐐠',
-  '𝓑𝓢',
-  '𝔅𝔖',
-  '𝔹𝕊',
-  '𝕭𝕾',
-  '𝖡𝖲'
-]
 
 const baseRoutes = [
   {
@@ -68,15 +60,15 @@ export default class App extends React.Component {
     return (
       <Router>
         <div>
-          <Bg></Bg>
+          <Bg/>
           <Wrapper>
             <Helment titleTemplate={`%s - Bhashkar Sharma`} />
-            <div style={{textAlign: 'center'}}>
+            <div className="construction">
               [ <span role="img" aria-label="Warning">⚠️</span>
               &nbsp;Site Under Construction. Watch your step&nbsp;
               <span role="img" aria-label="Construction">🚧</span> ]
             </div>
-            <Title>{titles[Math.floor(Math.random() * titles.length)]}</Title>
+            <Title>BS</Title>
             <Nav>
               {routes.filter((i,e) => e < 4).map((route, i) => (
                 <NavLink key={i} {...route} />

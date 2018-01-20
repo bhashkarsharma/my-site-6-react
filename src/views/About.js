@@ -2,18 +2,20 @@ import Helmet from 'react-helmet'
 import { Link } from 'react-router-dom'
 import Page from '../components/Page'
 import React from 'react'
+import Title from '../components/Title'
 import styled from 'styled-components'
 
 const Icons = styled.div`
   font-family: "FontAwesome";
-  font-size: 10vmin;
+  font-size: 2rem;
   margin: 5vmin 0;
   text-align: center;
 
   a {
-    margin: 0 1vmin;
-    padding: 0.5vmin;
+    margin: 0 0.5rem;
+    padding: 0.25rem;
     text-decoration: none;
+    
     &:before, &:after {
       display: none;
     }
@@ -38,11 +40,12 @@ const Icons = styled.div`
 
 export default () => (
   <Page>
-    <h1>About</h1>
+    <Title>About</Title>
     <p>I am passionate about an open web and great user experiences.</p>
     <p>I love books; and attempt to write at times. I enjoy sharing my learnings on <a href="http://quora.com/Bhashkar-Sharma">Quora</a>, among other places.</p>
     <p>The excitement of learning new things is the reason I get out of bed in the morning.</p>
     <p>You can find my <a href="http://static.bhashkar.me/Resume_Jan2017.pdf">resume</a> here.</p>
+    <p>Read about <Link to='/colophon'>what went into this site</Link>.</p>
     <Icons>
       <a href="https://twitter.com/bhashkarsharma">
           <i className="fab fa-twitter"></i>
@@ -60,7 +63,6 @@ export default () => (
           <i className="fas fa-at"></i>
       </a>
     </Icons>
-    <p>Read about <Link to='/colophon'>how this site was made</Link>.</p>
     <Helmet title='About' />
   </Page>
 )

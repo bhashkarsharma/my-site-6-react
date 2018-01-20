@@ -14,20 +14,20 @@ class CanvasApp {
     }
 
     init() {
-        this.numCircles = 15
-        this.maxMaxRad = 200
-        this.minMaxRad = 200
+        this.numCircles = 12
+        this.maxMaxRad = 250
+        this.minMaxRad = 250
         this.minRadFactor = 0
         this.iterations = 11
         this.numPoints = Math.pow(2, this.iterations) + 1
-        this.drawsPerFrame = 4
+        this.drawsPerFrame = 5
         this.fullTurn = Math.PI * 2 * this.numPoints / (1 + this.numPoints)
         this.minX = -this.maxMaxRad
         this.maxX = this.displayWidth + this.maxMaxRad
         this.minY = this.displayHeight / 2 - 50
         this.maxY = this.displayHeight / 2 + 50
-        this.twistAmount = 0.6 * Math.PI * 2
-        this.stepsPerSegment = Math.floor(500 / this.numCircles)
+        this.twistAmount = Math.PI
+        this.stepsPerSegment = Math.floor(200 / this.numCircles)
         this.maxColorValue = 80
         this.lineAlpha = 0.01
 
@@ -268,7 +268,17 @@ const BgBox = styled.div`
     width: 100%;
     z-index: -1;
     canvas {
-        opacity: 0.4;
+        -webkit-mask-image: -webkit-gradient(linear, left top, right top,
+            color-stop(0.00,  rgba(0,0,0,1)),
+            color-stop(0.25,  rgba(0,0,0,0)),
+            color-stop(0.75,  rgba(0,0,0,0)),
+            color-stop(1.00,  rgba(0,0,0,1)));
+    }
+    @media (max-width: 480px) {
+        canvas {
+            -webkit-mask-image: none;
+            opacity: 0.25;
+        }
     }
 `
 
@@ -290,9 +300,7 @@ export default class Bg extends React.Component {
     }
 
     draw() {
-        if (Math.floor(Math.random() * 10) > 5) {
-            new CanvasApp(this.canvas, this.canvas.width, this.canvas.height)
-        }
+        new CanvasApp(this.canvas, this.canvas.width, this.canvas.height)
     }
 
     render() {

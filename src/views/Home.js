@@ -1,6 +1,7 @@
 import Helmet from 'react-helmet'
 import Page from '../components/Page'
 import React from 'react'
+import Title from '../components/Title'
 import styled from 'styled-components'
 
 const Tools = styled.div`
@@ -14,7 +15,7 @@ const Tools = styled.div`
 
 export default () => (
   <Page>
-    <h1>Tools</h1>
+    <Title>Tools</Title>
     <Tools>
         <div><i className="fab fa-angular"></i></div>
         <div><i className="fab fa-aws"></i></div>

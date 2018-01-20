@@ -1,10 +1,11 @@
 import Helmet from 'react-helmet'
 import Page from '../components/Page'
 import React from 'react'
+import Title from '../components/Title'
 
 export default () => (
   <Page>
-    <h1>Not Found!</h1>
+    <Title>Not Found!</Title>
     <Helmet title='404' />
   </Page>
 )

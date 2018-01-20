@@ -1,12 +1,13 @@
 import Helmet from 'react-helmet'
 import LabPage from '../../components/LabPage'
 import React from 'react'
+import Title from '../../components/Title'
 import styled from 'styled-components'
 
 const Clock = styled.div`
-  font-family: Helvetica, Arial, sans-serif;
-  margin: 5vw auto;
-  .row {
+margin: 5vw auto;
+.row {
+    font-family: Helvetica, Arial, sans-serif;
     line-height: 1em;
     .item {
       display: inline-block;
@@ -143,7 +144,7 @@ export default class Helvetica extends React.Component {
   render() {
     return (
       <LabPage>
-        <h1>Helvetica</h1>
+        <Title>Helvetica</Title>
         <Clock>
           {
             this.state.labelArr.map((i, k) => {

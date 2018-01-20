@@ -7,6 +7,7 @@ import Page from '../components/Page'
 import Posts from '../posts'
 import React from 'react'
 import { Redirect } from 'react-router-dom'
+import Title from '../components/Title'
 
 export default class Post extends React.Component {
     constructor(props) {
@@ -40,7 +41,7 @@ export default class Post extends React.Component {
         const options = { html: true }
         return (
         <Page>
-            <h1>{this.state.post.data.title}</h1>
+            <Title>{this.state.post.data.title}</Title>
             {this.state.post.data.categories &&
                 <Meta> Published in <strong>{this.state.post.data.categories}</strong></Meta>}
             <Meta> on {this.state.post.data.date.substring(0, 10)}</Meta>

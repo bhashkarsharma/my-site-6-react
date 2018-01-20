@@ -2,6 +2,7 @@ import Face from './Face'
 import Helmet from 'react-helmet'
 import LabPage from '../../components/LabPage'
 import React from 'react'
+import Title from '../../components/Title'
 import styled from 'styled-components'
 
 const DigilogContainer = styled.div`
@@ -80,7 +81,7 @@ export default class Digilog extends React.Component {
     render() {
         return (
             <LabPage>
-                <h1>Digilog</h1>
+                <Title>Digilog</Title>
                 <DigilogContainer>
                     <div className="face-box">
                     {

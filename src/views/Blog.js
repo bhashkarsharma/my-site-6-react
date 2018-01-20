@@ -5,10 +5,11 @@ import Meta from '../components/Meta'
 import Page from '../components/Page'
 import Posts from '../posts'
 import React from 'react'
+import Title from '../components/Title'
 import styled from 'styled-components'
 
 const LinkTitle = styled.span`
-  margin-right: 2vmin;
+  margin-right: 0.5rem;
   text-transform: capitalize;
 `
 
@@ -16,7 +17,7 @@ export default class Blog extends React.Component {
   render() {
     return (
       <Page>
-        <h1>Blog</h1>
+        <Title>Blog</Title>
         <Helmet title='Blog' />
         {Posts.map((p,i) => {
           return <Linkbox key={i}>

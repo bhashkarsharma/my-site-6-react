@@ -1,5 +1,5 @@
 import styled from 'styled-components'
 
 export default styled.div`
-    margin: 5vmin 0;
+    margin: 1rem 0;
 `

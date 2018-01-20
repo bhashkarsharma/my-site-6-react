@@ -2,6 +2,7 @@ import Digit from './Digit'
 import Helmet from 'react-helmet'
 import LabPage from '../../components/LabPage'
 import React from 'react'
+import Title from '../../components/Title'
 import styled from 'styled-components'
 
 const SegmentContainer = styled.div`
@@ -50,7 +51,7 @@ export default class Segment extends React.Component {
     render() {
         return (
             <LabPage>
-                <h1>Segment</h1>
+                <Title>Segment</Title>
                 <SegmentContainer>
                     <div className="error-message">Your screen is too small.
                     Try viewing in landscape mode, or use a bigger device.</div>
