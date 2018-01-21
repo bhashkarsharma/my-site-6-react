@@ -258,7 +258,7 @@ class CanvasApp {
                 point = point.next
             }
         }
-        return pointArray;
+        return pointArray
     }
 }
 
@@ -276,7 +276,7 @@ const BgBox = styled.div`
     }
     @media (max-width: 480px) {
         canvas {
-            -webkit-mask-image: none;
+            mask-image: none;
             opacity: 0.25;
         }
     }
@@ -310,4 +310,4 @@ export default class Bg extends React.Component {
 	    </BgBox>
         )
     }
-};
+}

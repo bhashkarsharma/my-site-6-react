@@ -9,14 +9,13 @@ text-align: center;
     color: white;
     display: inline-block;
     padding: 30px;
-    transition: all 0.5s;
+    transition: all 1s;
 
     &:hover {
         transform: rotate(180deg);
     }
 }
 .logo {
-    backface-visibility: visible;
     height: 50px;
     position: relative;
     width: 50px;

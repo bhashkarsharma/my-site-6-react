@@ -41,12 +41,18 @@ export default class Post extends React.Component {
         const options = { html: true }
         return (
         <Page>
-            <Title>{this.state.post.data.title}</Title>
-            <Meta>Published </Meta>
-            {this.state.post.data.categories && <Meta>in <strong>{this.state.post.data.categories}</strong></Meta>}
-            <Meta> on {this.state.post.data.date.substring(0, 10)}</Meta>
-            <Markdown source={this.state.post.content} options={options} />
-            <Helmet title={this.state.post.data.title} />
+            {this.state.post.data.title ?
+            <div>
+                <Title>{this.state.post.data.title}</Title>
+                <Meta>Published </Meta>
+                {this.state.post.data.categories && <Meta>in <strong>{this.state.post.data.categories}</strong></Meta>}
+                <Meta> on {this.state.post.data.date.substring(0, 10)}</Meta>
+                <Markdown source={this.state.post.content} options={options} />
+                <Helmet title={this.state.post.data.title} />
+            </div> : 
+            <div>
+                <Title>Loading...</Title>
+            </div>}
             {this.state.redirect && <Redirect to='/404' />}
         </Page>
         )

@@ -15,6 +15,7 @@ const Tools = styled.div`
 
 export default () => (
   <Page>
+    <p>Welcome to my website. I like to write, click, draw, and read when I'm not sleeping.</p>
     <Title>Tools</Title>
     <Tools>
         <div><i className="fab fa-angular"></i></div>
