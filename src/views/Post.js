@@ -16,7 +16,8 @@ export default class Post extends React.Component {
     }
 
     componentDidMount() {
-        const md = this.fetchPost(this.props.match.params[0])
+        const path = this.props.match.params[0].replace(/\/+$/, '')
+        const md = this.fetchPost(path)
         md.then(i => {
             if (i && i.status === 200) {
                 return i.text()

@@ -21,7 +21,7 @@ export default class Blog extends React.Component {
         <Helmet title='Blog' />
         {Posts.map((p,i) => {
           return <Linkbox key={i}>
-            <Link to={`/blog/${p.path}`}><LinkTitle>{p.title}</LinkTitle></Link>
+            <Link to={`/blog/${p.path}/`}><LinkTitle>{p.title}</LinkTitle></Link>
             <Meta>{p.date.substring(0, 4)}</Meta>
             {p.categories && <Meta> / {p.categories}</Meta>}
           </Linkbox>

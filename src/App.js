@@ -27,32 +27,32 @@ const baseRoutes = [
   },
   {
     title: '📃 Blog',
-    path: '/blog',
+    path: '/blog/',
     component: Blog,
     exact: true
   },
   {
     title: '🔬 Lab',
-    path: '/lab',
+    path: '/lab/',
     component: Lab,
     exact: true
   },
   {
     title: 'ℹ️ About',
-    path: '/about',
+    path: '/about/',
     component: About
   },
   {
-    path: '/blog/*',
+    path: '/blog/*/',
     component: Post
   },
   {
-    path: '/colophon',
+    path: '/colophon/',
     component: Colophon,
     exact: true
   }
 ]
-labRoutes.forEach(i => i.path = `/lab/${i.path}`)
+labRoutes.forEach(i => i.path = `/lab/${i.path}/`)
 const routes = [...baseRoutes, ...labRoutes]
 
 export default class App extends React.Component {
