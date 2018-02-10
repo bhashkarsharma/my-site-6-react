@@ -9,7 +9,7 @@ text-align: center;
     color: white;
     display: inline-block;
     padding: 30px;
-    transition: all 1s;
+    transition: all 0.5s;
 
     &:hover {
         transform: rotate(180deg);
@@ -30,20 +30,24 @@ text-align: center;
             border: 3px solid;
             box-sizing: border-box;
             height: 25%;
+
             &:nth-child(1) {
                 border-bottom-width: 0;
                 border-top-right-radius: 100%;
             }
+
             &:nth-child(2) {
                 border-bottom-right-radius: 100%;
                 border-bottom-width: 0;
                 border-top-width: 0;
             }
+
             &:nth-child(3) {
                 border-bottom-width: 0;
                 border-left-width: 0;
                 border-top-right-radius: 100%;
             }
+
             &:nth-child(4) {
                 border-bottom-right-radius: 100%;
                 border-top-width: 0;

@@ -8,8 +8,6 @@ const NavLink = styled.div`
     transition: color 0.2s, border-bottom-color 0.2s;
     color: ${props => props.active ? 'deepskyblue' : '#666'};
     text-decoration: none;
-    border-bottom: 3px solid;
-    border-bottom-color: ${props => props.active ? 'rgba(0, 0, 255, 0.1)' : 'transparent'};
 
     &:hover, &:active, &:focus {
       background: none;
