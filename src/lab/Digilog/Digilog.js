@@ -6,6 +6,8 @@ import Title from '../../components/Title'
 import styled from 'styled-components'
 
 const DigilogContainer = styled.div`
+    margin: 2vw 0;
+    
     .face-box {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
@@ -17,7 +19,7 @@ const DigilogContainer = styled.div`
 
         label {
             display: inline-block;
-            font-size: 2em;
+            font-size: 1.2em;
             margin: 1vw 2vw;
 
             &.chosen {
@@ -37,7 +39,7 @@ export default class Digilog extends React.Component {
         this.state = {
             hh: 0,
             mm: 0,
-            mode: 0,
+            mode: 1,
             time: [0, 0, 0, 0, 0, 0]
         }
         this.tick = this.tick.bind(this)
@@ -92,10 +94,10 @@ export default class Digilog extends React.Component {
                     </div>
                     <div className="mode-selector">
                         <div>
-                            <label className={this.state.mode === 0 ? 'chosen' : ''} onClick={this.switchMode.bind(this, 0)}>Analog</label>
-                            {this.state.mode === 0 && <div className="fa-holder"><i className="fas fa-toggle-off fa-2x"></i></div>}
-                            {this.state.mode === 1 && <div className="fa-holder"><i className="fas fa-toggle-on fa-2x"></i></div>}
-                            <label className={this.state.mode === 1 ? 'chosen' : ''} onClick={this.switchMode.bind(this, 1)}>Digital</label>
+                            <label className={`sans-serif ${this.state.mode === 0 ? 'chosen' : ''}`} onClick={this.switchMode.bind(this, 0)}>Analog</label>
+                            {this.state.mode === 0 && <div className="fa-holder"><i className="fas fa-toggle-off"></i></div>}
+                            {this.state.mode === 1 && <div className="fa-holder"><i className="fas fa-toggle-on"></i></div>}
+                            <label className={`sans-serif ${this.state.mode === 1 ? 'chosen' : ''}`} onClick={this.switchMode.bind(this, 1)}>Digital</label>
                         </div>
                     </div>
                 </DigilogContainer>

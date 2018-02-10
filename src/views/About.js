@@ -15,6 +15,10 @@ const Icons = styled.div`
     margin: 0 0.5rem;
     padding: 0.25rem;
     text-decoration: none;
+
+    &:hover {
+      background: none;
+    }
     
     &:before, &:after {
       display: none;
