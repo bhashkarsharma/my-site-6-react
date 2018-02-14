@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const LogoBox = styled.div`
+margin: 2em 0;
 text-align: center;
 .bg {
     background: #333;

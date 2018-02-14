@@ -180,13 +180,13 @@ class CanvasApp {
             }
 
             this.context.stroke()
-
             this.lineNumber++
-	    if (this.lineNumber > this.numPoints - 1) {
-	        clearInterval(this.timer)
-	        this.timer = null
-	        break
-	    }
+
+            if (this.lineNumber > this.numPoints - 1) {
+                clearInterval(this.timer)
+                this.timer = null
+                break
+            }
         }
     }
 
@@ -283,6 +283,10 @@ const BgBox = styled.div`
 `
 
 export default class Bg extends React.Component {
+    constructor() {
+        super()
+        this.canvas = null
+    }
 
     componentDidMount() {
         this.updateSize()

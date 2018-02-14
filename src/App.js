@@ -3,7 +3,7 @@ import './App.css'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 
 import About from './views/About'
-import Bg from './components/Bg'
+// import Bg from './components/Bg'
 import Blog from './views/Blog'
 import Colophon from './views/Colophon'
 import Helment from 'react-helmet'
@@ -60,7 +60,7 @@ export default class App extends React.Component {
     return (
       <Router>
         <div>
-          <Bg/>
+          {/* <Bg/> */}
           <Wrapper>
             <Helment titleTemplate={`%s - Bhashkar Sharma`} />
             <Logo/>

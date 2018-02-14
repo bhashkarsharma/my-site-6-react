@@ -46,7 +46,7 @@ export default () => (
   <Page>
     <Title>About</Title>
     <p>I am passionate about the web and great user experiences.</p>
-    <p>I love books. I like to write. Sometimes for humans, mostly for computers.</p>
+    <p>I spend a lot of time behind the keyboard. Sometimes writing for humans, mostly for computers.</p>
     <p>The excitement of learning new things is the reason I get out of bed in the morning.</p>
     <p>You can find my <a href="http://static.bhashkar.me/Resume_Jan2017.pdf">resume</a> here.</p>
     <p>Read about <Link to='/colophon/'>what went into making this site</Link>.</p>
