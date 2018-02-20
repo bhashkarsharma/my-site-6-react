@@ -60,7 +60,7 @@ const CardContainer = styled.div`
     .round {
         border-style: solid;
         border-width: 2px;
-        border-radius: calc(var(--icon_size)/2);
+        border-radius: var(--icon_size);
         height: calc(var(--icon_size));
         width: calc(var(--icon_size) * 3/2);
     }
@@ -72,10 +72,10 @@ const CardContainer = styled.div`
         width: 0;
 
         &.empty:after {
-            content: '';
             border-left: calc((var(--icon_size) - var(--icon_inner_diff))/2) solid transparent;
             border-right: calc((var(--icon_size) - var(--icon_inner_diff))/2) solid transparent;
             border-bottom: calc(var(--icon_size) - var(--icon_inner_diff)) solid white;
+            content: '';
             height: 0; 
             left: calc(-(var(--icon_inner_diff) + 1));
             position: absolute;
@@ -84,10 +84,10 @@ const CardContainer = styled.div`
         }
 
         &.shaded:before {
-            content: '';
             border-left: calc((var(--icon_size) - var(--icon_inner_diff))/2) solid transparent;
             border-right: calc((var(--icon_size) - var(--icon_inner_diff))/2) solid transparent;
             border-bottom: calc(var(--icon_size) - var(--icon_inner_diff)) solid white;
+            content: '';
             height: 0; 
             left: calc(-(var(--icon_inner_diff) + 1));
             position: absolute;
@@ -96,14 +96,80 @@ const CardContainer = styled.div`
         }
 
         &.shaded:after {
-            content: '';
             border-left: calc(var(--icon_size) - var(--icon_inner_diff))/2 solid transparent;
             border-right: calc(var(--icon_size) - var(--icon_inner_diff))/2 solid transparent;
+            content: '';
             height: 0; 
-            left: -(var(--icon_inner_diff) + 1);
+            left: calc(-var(--icon_inner_diff) + 1);
             position: absolute;
-            top: (var(--icon_inner_diff)/2) + 1;
+            top: calc(var(--icon_inner_diff)/2 + 1);
             width: 0;
+        }
+    }
+
+    .inner.red {
+        .round, .square {
+            border-color: #E74C3C;
+
+            &.filled {
+                background-color: #E74C3C;
+            }
+
+            &.shaded {
+                background: linear-gradient(to bottom, #E74C3C, #E74C3C 50%, white 50%, white);
+            }
+        }
+
+        .triangle {
+            border-bottom: var(--icon_size) solid #E74C3C;
+
+            &.shaded:after {
+                border-bottom: calc(var(--icon_size)/2) solid #E74C3C;
+            }
+        }
+    }
+
+    .inner.green {
+        .round, .square {
+            border-color: #27AE60;
+
+            &.filled {
+                background-color: #27AE60;
+            }
+
+            &.shaded {
+                background: linear-gradient(to bottom, #27AE60, #27AE60 50%, white 50%, white);
+            }
+        }
+
+        .triangle {
+            border-bottom: var(--icon_size) solid #27AE60;
+
+            &.shaded:after {
+                border-bottom: calc(var(--icon_size)/2) solid #27AE60;
+            }
+        }
+    }
+
+    .inner.blue {
+        .round, .square {
+            border-color: #2980B9;
+
+            &.filled {
+                background-color: #2980B9;
+            }
+
+            &.shaded {
+                background: linear-gradient(to bottom, #2980B9, #2980B9 50%, white 50%, white);
+            }
+        }
+
+        .triangle {
+            border-bottom: var(--icon_size) solid #2980B9;
+
+            &.shaded:after {
+                border-bottom: calc(var(--icon_size)/2) solid #2980B9;
+            }
         }
     }
 `

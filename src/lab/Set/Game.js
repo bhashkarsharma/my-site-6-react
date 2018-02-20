@@ -1,4 +1,5 @@
 import Card from './Card'
+import Cookies from 'universal-cookie'
 import Leaderboard from './Leaderboard'
 import React from 'react'
 import styled from 'styled-components'
@@ -13,20 +14,6 @@ import styled from 'styled-components'
 const GameContainer = styled.div`
 .set {
 
-    .final-stats {
-        animation: rainbow 18s ease infinite;
-        background: linear-gradient(90deg, #ff2400, #e81d1d, #e8b71d, #e3e81d,
-                    #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
-        background-size: 1800% 1800%;
-        padding: 90px 10px;
-        text-align: center;
-
-        .over {
-            font-size: 2em;
-            font-weight: bold;
-        }
-    }
-    
     .stats {
         font-weight: bold;
         margin: 0 5px;
@@ -145,14 +132,15 @@ const GameContainer = styled.div`
 export default class Game extends React.Component {
     constructor(props) {
         super(props)
+        this.cookies = new Cookies()
         this.cookieName = 'played'
         const colors = ['red', 'blue', 'green']
         const count = props.difficulty === 1 ? [1, 2, 3] : [1]
         const shapes = ['round', 'square', 'triangle']
         const fills = ['empty', 'shaded', 'filled']
         let deck = []
-        const drawCount = props.difficulty === 1 ?  12 : 9
-        const playedGame = window.SiteConf.getCookie(this.cookieName, '0')
+        const drawCount = props.difficulty === 1 ? 12 : 9
+        const playedGame = this.cookies.get(this.cookieName) || '0'
 
         colors.forEach(color => {
             count.forEach(count => {
@@ -198,7 +186,7 @@ export default class Game extends React.Component {
             hand = deck.slice(0, drawCount)
             possible = this.getPossibleSets(hand)
         } while (possible === 0)
-        
+
         hand = deck.splice(0, drawCount)
 
         this.setState({
@@ -298,7 +286,7 @@ export default class Game extends React.Component {
     calculateAvailablePoints() {
         if (this.props.timed) {
             const sec = Math.max(0, Math.floor((new Date() - this.state.lastWin) / 1000) - 10)
-            const availablePoints = 5 + Math.max(0, 10 - Math.floor(sec/5))
+            const availablePoints = 5 + Math.max(0, 10 - Math.floor(sec / 5))
             const progressWidth = (50 - sec) * 2
             this.setState({ availablePoints, progressWidth })
         } else {
@@ -328,7 +316,7 @@ export default class Game extends React.Component {
         const idx = []
         cards.forEach(i => {
             hand.forEach((j, k) => {
-                if (i.color === j.color && i.count === j.count 
+                if (i.color === j.color && i.count === j.count
                     && i.fill === j.fill && i.shape === j.shape) {
                     idx.push(k)
                     hand[k].visual = visualClass
@@ -336,7 +324,7 @@ export default class Game extends React.Component {
             })
         })
         this.setState({ hand, visualOn: true })
-        if(!success) this.showNotification(3)
+        if (!success) this.showNotification(3)
         setTimeout(() => {
             idx.forEach(i => {
                 hand[i].visual = ''
@@ -365,9 +353,9 @@ export default class Game extends React.Component {
     getCombinations(arr) {
         const l = arr.length
         let idx = []
-        for (let i=0; i<l-2; i++) {
-            for (let j=i+1; j<l-1; j++) {
-                for (let k=j+1; k<l; k++) {
+        for (let i = 0; i < l - 2; i++) {
+            for (let j = i + 1; j < l - 1; j++) {
+                for (let k = j + 1; k < l; k++) {
                     idx.push([i, j, k])
                 }
             }
@@ -420,7 +408,7 @@ export default class Game extends React.Component {
         if (notifCode && notifCode in notifMap) {
             const notification = notifMap[notifCode]
             const notifType = notification.type === 1 ? 'firstSuccess' :
-                            (notification.type === 2 ? 'firstError' : 'firstHint')
+                (notification.type === 2 ? 'firstError' : 'firstHint')
 
             if (this.state[notifType]) {
                 this.setState({
@@ -431,7 +419,7 @@ export default class Game extends React.Component {
                     this.setState({ notification: {} })
                 }, 1000)
 
-                window.SiteConf.setCookie(this.cookieName, '1')
+                this.cookies.set(this.cookieName, '1')
             }
         }
     }
@@ -449,9 +437,9 @@ export default class Game extends React.Component {
         const mins = timeDiff % 60
         timeDiff -= mins
         timeDiff /= 60
-        return `${timeDiff ? timeDiff + ' hours' : '' }\
+        return `${timeDiff ? timeDiff + ' hours' : ''}\
                     ${mins ? ' ' + mins + ' min' : ''}\
-                    ${sec ? ' ' + sec + ' sec' : '' }`
+                    ${sec ? ' ' + sec + ' sec' : ''}`
     }
 
     render() {
@@ -472,7 +460,7 @@ export default class Game extends React.Component {
                                 <div className="fa-holder"><i className="fas fa-trophy"></i></div>
                                 {this.state.score}
                             </div>
-                            {this.props.timed && 
+                            {this.props.timed &&
                                 <progress className="gameTimer" value={this.state.progressWidth} max="100"></progress>
                             }
                         </div>
@@ -484,10 +472,10 @@ export default class Game extends React.Component {
                             }
                             <div className={`cards ${this.state.notification.val ? 'blur' : ''}`}>
                                 {this.state.hand.map((i, k) => {
-                                        return <div key={k} className="cardbox">
-                                            <Card conf={i} onClick={this.cardClick.bind(this, i)}></Card>
-                                        </div>
-                                    })
+                                    return <div key={k} className="cardbox">
+                                        <Card conf={i} onClick={this.cardClick.bind(this, i)}></Card>
+                                    </div>
+                                })
                                 }
                             </div>
                         </div> :

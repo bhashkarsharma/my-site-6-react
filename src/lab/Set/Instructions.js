@@ -87,10 +87,10 @@ export default class Instructions extends React.Component {
                         <div className="playpen">
                             <div className="cards">
                                 {this.state.cards.map((i, k) => {
-                                        return <div key={k} className="cardbox">
-                                            <Card conf={i}></Card>
-                                        </div>
-                                    })
+                                    return <div key={k} className="cardbox">
+                                        <Card conf={i}></Card>
+                                    </div>
+                                })
                                 }
                             </div>
                         </div>
@@ -143,7 +143,6 @@ export default class Instructions extends React.Component {
                         </tbody>
                     </table>
                 </div>
-                <button onClick={this.props.onContinue}>Continue</button>
             </InstructionsContainer>
         )
     }

@@ -13,6 +13,7 @@ const GameContainer = styled.div`
     .backButton {
         border: 2px solid;
         border-radius: 4px;
+        cursor: pointer;
         display: inline-block;
         font-size: 0.8em;
         padding: 2px 4px;
@@ -25,6 +26,7 @@ const GameContainer = styled.div`
 
 const Menu = styled.div`
 text-align: center;
+
     div {
         background: skyblue;
         border: 2px solid;
@@ -49,7 +51,9 @@ export default class SetGame extends React.Component {
     constructor() {
         super()
         this.state = {
-            display: 1
+            difficulty: 0,
+            display: 0,
+            timed: false
         }
     }
 
@@ -63,25 +67,26 @@ export default class SetGame extends React.Component {
                 <Title>Set</Title>
                 <GameContainer>
                     {this.state.display > 0 &&
-                    <div className="backButton" onClick={this.showView.bind(this, 0)}>Back</div>}
-                    {{0: (
-                    <Menu>
-                        <div onClick={this.showView.bind(this, 1)}>Instructions</div>
-                        <div onClick={this.showView.bind(this, 2)}>Start Game</div>
-                        <div onClick={this.showView.bind(this, 2)}>Resume Game</div>
-                        <div onClick={this.showView.bind(this, 3)}>Leaderboard</div>
-                    </Menu>
-                    ),
-                    1: (
-                        <Instructions></Instructions>
-                    ),
-                    2: (
-                        <Game></Game>
-                    ),
-                    3: (
-                        <Leaderboard></Leaderboard>
-                    )
-                }[this.state.display]}
+                        <div className="backButton" onClick={this.showView.bind(this, 0)}>Back</div>}
+                    {{
+                        0: (
+                            <Menu>
+                                <div onClick={this.showView.bind(this, 1)}>Instructions</div>
+                                <div onClick={this.showView.bind(this, 2)}>Start Game</div>
+                                <div onClick={this.showView.bind(this, 2)}>Resume Game</div>
+                                <div onClick={this.showView.bind(this, 3)}>Leaderboard</div>
+                            </Menu>
+                        ),
+                        1: (
+                            <Instructions></Instructions>
+                        ),
+                        2: (
+                            <Game></Game>
+                        ),
+                        3: (
+                            <Leaderboard></Leaderboard>
+                        )
+                    }[this.state.display]}
                 </GameContainer>
                 <Helmet title='Set' />
             </LabPage>
