@@ -8,7 +8,7 @@ export default styled.div`
   pre {
     border: 1px solid;
     max-width: 100%;
-    overflow: scroll;
+    overflow: auto;
     padding: 2rem;
   }
 `

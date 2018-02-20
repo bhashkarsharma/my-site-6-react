@@ -1,0 +1,44 @@
+
+{
+    "rules": {
+      "leaderboard": {
+        ".read": true,
+        ".write": true,
+  
+        "highestScore": {
+          ".validate": "newData.isNumber()"
+        },
+  
+        "scoreList": {
+          "$name": {
+            ".validate": "newData.hasChildren(['name', 'score', 'time', 'hints'])",
+  
+            "name": {
+              ".validate": "newData.isString()"
+            },
+  
+            "score": {
+              ".validate": "newData.isNumber()"
+            },
+
+            "hints": {
+              ".validate": "newData.isNumber()"
+            },
+
+            "time": {
+              ".validate": "newData.isNumber()"
+            },
+  
+            "$other": {
+              ".validate": false
+            }
+          }
+        },
+  
+        "$other": {
+          ".validate": false
+        }
+      }
+    }
+  }
+  

@@ -6,6 +6,7 @@ import Linkbox from '../components/Linkbox'
 import Page from '../components/Page'
 import React from 'react'
 import Segment from './Segment/Segment'
+import SetGame from './Set/SetGame'
 import Title from '../components/Title'
 import styled from 'styled-components'
 
@@ -24,6 +25,11 @@ export const labRoutes = [
         title: 'Digilog',
         path: 'digilog',
         component: Digilog
+    },
+    {
+        title: 'Set',
+        path: 'set',
+        component: SetGame
     }
 ]
 

@@ -1,5 +1,5 @@
 import Helmet from 'react-helmet'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import Page from '../components/Page'
 import React from 'react'
 import Title from '../components/Title'
