@@ -47,7 +47,7 @@ const CardContainer = styled.div`
     }
 
     .icon {
-        position: relative;
+        margin: auto;
     }
 
     .square {
@@ -57,7 +57,7 @@ const CardContainer = styled.div`
         width: var(--icon_size);
     }
 
-    .round {
+    .circle {
         border-style: solid;
         border-width: 2px;
         border-radius: var(--icon_size);
@@ -108,7 +108,7 @@ const CardContainer = styled.div`
     }
 
     .inner.red {
-        .round, .square {
+        .circle, .square {
             border-color: #E74C3C;
 
             &.filled {
@@ -130,7 +130,7 @@ const CardContainer = styled.div`
     }
 
     .inner.green {
-        .round, .square {
+        .circle, .square {
             border-color: #27AE60;
 
             &.filled {
@@ -152,7 +152,7 @@ const CardContainer = styled.div`
     }
 
     .inner.blue {
-        .round, .square {
+        .circle, .square {
             border-color: #2980B9;
 
             &.filled {
@@ -183,7 +183,11 @@ export default class Card extends React.Component {
                     onClick={this.props.onClick}>
                     {
                         Array.from(Array(this.props.conf.count).keys()).map((i, k) => {
-                            return <div className={`icon ${this.props.conf.fill} ${this.props.conf.shape}`} key={k}></div>
+                            const fill = this.props.conf.fill === 'empty' ? 'far' : 'fas';
+                            // return <div className={`icon ${this.props.conf.fill} ${this.props.conf.shape}`} key={k}></div>
+                            return <div className={`icon ${this.props.conf.fill} ${this.props.conf.shape}`} key={k}>
+                                <i className={`${fill} fa-${this.props.conf.shape}`}></i>
+                            </div>
                         })
                     }
                 </div>

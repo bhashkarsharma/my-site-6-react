@@ -136,7 +136,7 @@ export default class Game extends React.Component {
         this.cookieName = 'played'
         const colors = ['red', 'blue', 'green']
         const count = props.difficulty === 1 ? [1, 2, 3] : [1]
-        const shapes = ['round', 'square', 'triangle']
+        const shapes = ['circle', 'square', 'heart']
         const fills = ['empty', 'shaded', 'filled']
         let deck = []
         const drawCount = props.difficulty === 1 ? 12 : 9

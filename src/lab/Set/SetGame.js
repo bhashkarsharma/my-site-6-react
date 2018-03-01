@@ -51,7 +51,7 @@ export default class SetGame extends React.Component {
     constructor() {
         super()
         this.state = {
-            difficulty: 0,
+            difficulty: 1,
             display: 0,
             timed: false
         }
@@ -81,7 +81,7 @@ export default class SetGame extends React.Component {
                             <Instructions></Instructions>
                         ),
                         2: (
-                            <Game></Game>
+                            <Game difficulty={this.state.difficulty}></Game>
                         ),
                         3: (
                             <Leaderboard></Leaderboard>
