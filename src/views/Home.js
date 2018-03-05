@@ -9,14 +9,14 @@ const Tools = styled.div`
   text-align: center;
   div {
     display: inline-block;
-    font-size: 2vw;
+    font-size: 1.2em;
     margin-bottom: 1vw;
     margin-left: 1vw;
 
     &:after {
       content: "\f111";
       font-family: "FontAwesome";
-      font-size: 0.5vw;
+      font-size: 0.3em;
       margin-left: 1vw;
       vertical-align: top;
     }
