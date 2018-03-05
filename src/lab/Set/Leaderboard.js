@@ -108,7 +108,7 @@ export default class Leaderboard extends React.Component {
     render() {
         return (
             <LeaderboardContainer>
-                {this.props.gameOver ? 
+                {(this.props.gameOver || !this.state.saved) ? 
                 <div className="scoreForm">
                     <input
                         type="text"
