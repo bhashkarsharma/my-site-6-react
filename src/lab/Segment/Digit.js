@@ -20,7 +20,7 @@ const Dig = styled.div`
             height: 4.75vw;
             position: absolute;
             transition-duration: 0.5s;
-            transform-origin: 0.75vw 0.75vw;
+            transform-origin: 0.8vw 0.8vw;
             width: 1.5vw;
 
             &.mask {

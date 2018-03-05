@@ -52,19 +52,19 @@ export default () => (
     <p>Read about <Link to='/colophon/'>what went into making this site</Link>.</p>
     <Icons>
       <a href="https://twitter.com/bhashkarsharma">
-          <i className="fab fa-twitter"></i>
+          <i className="fa fa-twitter"></i>
       </a>
       <a href="https://linkedin.com/in/bhashkarsharma">
-          <i className="fab fa-linkedin"></i>
+          <i className="fa fa-linkedin"></i>
       </a>
       <a href="https://github.com/bhashkarsharma">
-          <i className="fab fa-github"></i>
+          <i className="fa fa-github"></i>
       </a>
       <a href="https://instagram.com/bhashkarsharma">
-          <i className="fab fa-instagram"></i>
+          <i className="fa fa-instagram"></i>
       </a>
       <a href="http://www.google.com/recaptcha/mailhide/d?k=01SDx7taNN6zHr16t_7ptUow==&c=9O4_ghKVlCH-WzZa1rp7YEyR4f9inkxWAIK9q55KjYs=">
-          <i className="fas fa-at"></i>
+          <i className="fa fa-at"></i>
       </a>
     </Icons>
     <Helmet title='About' />

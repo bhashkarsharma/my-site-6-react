@@ -9,8 +9,21 @@ const Tools = styled.div`
   text-align: center;
   div {
     display: inline-block;
-    font-size: 8vmin;
-    margin: 2vmin;
+    font-size: 2vw;
+    margin-bottom: 1vw;
+    margin-left: 1vw;
+
+    &:after {
+      content: "\f111";
+      font-family: "FontAwesome";
+      font-size: 0.5vw;
+      margin-left: 1vw;
+      vertical-align: top;
+    }
+
+    &:last-child:after {
+      content: none;
+    }
   }
 `
 
@@ -24,16 +37,16 @@ export default () => (
       <p>Welcome to my website. I like to write, click, draw, and read when I'm not sleeping.</p>
     <Title>Tools</Title>
     <Tools>
-        <div><i className="fab fa-angular"></i></div>
-        <div><i className="fab fa-aws"></i></div>
-        <div><i className="fab fa-gulp"></i></div>
-        <div><i className="fab fa-css3-alt"></i></div>
-        <div><i className="fab fa-html5"></i></div>
-        <div><i className="fab fa-js"></i></div>
-        <div><i className="fab fa-node"></i></div>
-        <div><i className="fab fa-python"></i></div>
-        <div><i className="fab fa-react"></i></div>
-        <div><i className="fab fa-sass"></i></div>
+        <div>Angular</div>
+        <div>AWS</div>
+        <div>Gulp</div>
+        <div>CSS3</div>
+        <div>HTML5</div>
+        <div>JS</div>
+        <div>Node</div>
+        <div>Python</div>
+        <div>React</div>
+        <div>Sass</div>
     </Tools>
     <Helmet title='Home' />
   </Page>

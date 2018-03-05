@@ -7,9 +7,11 @@ animation: rainbow 18s ease infinite;
 background: linear-gradient(90deg, #ff2400, #e81d1d, #e8b71d, #e3e81d,
             #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
 background-size: 1800% 1800%;
-padding: 90px 10px;
+padding: 20px;
 text-align: center;
+
     .scoreForm {
+        margin: 10px 0;
 
         input {
             color: #333;
@@ -106,6 +108,7 @@ export default class Leaderboard extends React.Component {
     render() {
         return (
             <LeaderboardContainer>
+                {this.props.gameOver ? 
                 <div className="scoreForm">
                     <input
                         type="text"
@@ -114,7 +117,7 @@ export default class Leaderboard extends React.Component {
                         value={this.state.name}
                         onChange={this.handleNameChange.bind(this)} />
                     <button onClick={this.saveScore.bind(this)}>Save</button>
-                </div>
+                </div> :
                 <table className="scoreboard">
                     <thead>
                         <tr>
@@ -136,7 +139,7 @@ export default class Leaderboard extends React.Component {
                         })
                     }
                     </tbody>
-                </table>
+                </table>}
             </LeaderboardContainer>
         )
     }

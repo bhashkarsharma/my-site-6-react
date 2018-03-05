@@ -2,8 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const CardContainer = styled.div`
---icon_size: 20px;
---icon_inner_diff: 6px;
+--card-shadow: 0px 0px 4px 3px;
 
     @keyframes zoominout {
         0% {
@@ -37,140 +36,65 @@ const CardContainer = styled.div`
 
     .inner {
         background-color: white;
-        border: 1px solid;
+        border: 1px solid #333;
         border-radius: 5px;
         height: 100px;
         margin: 5px;
+        overflow: hidden;
         padding: 10px;
         text-align: center;
         transition: all .2s ease-in-out;
+
+        &.red {
+            color: #E74C3C;
+        }
+    
+        &.green {
+            color: #27AE60;
+        }
+    
+        &.blue {
+            color: #2980B9;
+        }
+
+        &.clicked {
+            box-shadow: var(--card-shadow) #555;
+        }
+        
+        &.error {
+            animation: shake 0.5s infinite;
+            box-shadow: var(--card-shadow) #ff2f00;
+        }
+        
+        &.hint {
+            animation: jiggle 0.5s infinite;
+            box-shadow: var(--card-shadow) #0077ff;
+        }
+
+        &.success {
+            animation: zoominout 1s infinite;
+            box-shadow: var(--card-shadow) #00ff00;
+            filter: blur(2px);
+        }
+
+        div {
+            &:nth-child(1):nth-last-child(1) {
+                margin: 30px auto;
+            }
+    
+            &:nth-child(1):nth-last-child(2),
+            &:nth-child(2):nth-last-child(1) {
+                margin: 10px auto;
+            }
+
+            .fa-stack {
+                font-size: 0.75vw;
+            }
+        }
     }
 
     .icon {
         margin: auto;
-    }
-
-    .square {
-        border-style: solid;
-        border-width: 2px;
-        height: var(--icon_size);
-        width: var(--icon_size);
-    }
-
-    .circle {
-        border-style: solid;
-        border-width: 2px;
-        border-radius: var(--icon_size);
-        height: calc(var(--icon_size));
-        width: calc(var(--icon_size) * 3/2);
-    }
-
-    .triangle {
-        border-left: calc(var(--icon_size)/2) solid transparent;
-        border-right: calc(var(--icon_size)/2) solid transparent;
-        height: 0;
-        width: 0;
-
-        &.empty:after {
-            border-left: calc((var(--icon_size) - var(--icon_inner_diff))/2) solid transparent;
-            border-right: calc((var(--icon_size) - var(--icon_inner_diff))/2) solid transparent;
-            border-bottom: calc(var(--icon_size) - var(--icon_inner_diff)) solid white;
-            content: '';
-            height: 0; 
-            left: calc(-(var(--icon_inner_diff) + 1));
-            position: absolute;
-            top: calc(var(--icon_inner_diff)/2 + 1);
-            width: 0;
-        }
-
-        &.shaded:before {
-            border-left: calc((var(--icon_size) - var(--icon_inner_diff))/2) solid transparent;
-            border-right: calc((var(--icon_size) - var(--icon_inner_diff))/2) solid transparent;
-            border-bottom: calc(var(--icon_size) - var(--icon_inner_diff)) solid white;
-            content: '';
-            height: 0; 
-            left: calc(-(var(--icon_inner_diff) + 1));
-            position: absolute;
-            top: calc(var(--icon_inner_diff)/2 + 1);
-            width: 0;
-        }
-
-        &.shaded:after {
-            border-left: calc(var(--icon_size) - var(--icon_inner_diff))/2 solid transparent;
-            border-right: calc(var(--icon_size) - var(--icon_inner_diff))/2 solid transparent;
-            content: '';
-            height: 0; 
-            left: calc(-var(--icon_inner_diff) + 1);
-            position: absolute;
-            top: calc(var(--icon_inner_diff)/2 + 1);
-            width: 0;
-        }
-    }
-
-    .inner.red {
-        .circle, .square {
-            border-color: #E74C3C;
-
-            &.filled {
-                background-color: #E74C3C;
-            }
-
-            &.shaded {
-                background: linear-gradient(to bottom, #E74C3C, #E74C3C 50%, white 50%, white);
-            }
-        }
-
-        .triangle {
-            border-bottom: var(--icon_size) solid #E74C3C;
-
-            &.shaded:after {
-                border-bottom: calc(var(--icon_size)/2) solid #E74C3C;
-            }
-        }
-    }
-
-    .inner.green {
-        .circle, .square {
-            border-color: #27AE60;
-
-            &.filled {
-                background-color: #27AE60;
-            }
-
-            &.shaded {
-                background: linear-gradient(to bottom, #27AE60, #27AE60 50%, white 50%, white);
-            }
-        }
-
-        .triangle {
-            border-bottom: var(--icon_size) solid #27AE60;
-
-            &.shaded:after {
-                border-bottom: calc(var(--icon_size)/2) solid #27AE60;
-            }
-        }
-    }
-
-    .inner.blue {
-        .circle, .square {
-            border-color: #2980B9;
-
-            &.filled {
-                background-color: #2980B9;
-            }
-
-            &.shaded {
-                background: linear-gradient(to bottom, #2980B9, #2980B9 50%, white 50%, white);
-            }
-        }
-
-        .triangle {
-            border-bottom: var(--icon_size) solid #2980B9;
-
-            &.shaded:after {
-                border-bottom: calc(var(--icon_size)/2) solid #2980B9;
-            }
-        }
     }
 `
 
@@ -179,14 +103,19 @@ export default class Card extends React.Component {
         return (
             <CardContainer>
                 <div
-                    className={`inner ${this.props.conf.color} ${this.props.conf.clicked ? 'clicked' : ''} ${this.props.conf.visual}`}
+                    className={`inner ${this.props.conf.color} ${this.props.conf.shape} ${this.props.conf.fill} ${this.props.conf.clicked ? 'clicked' : ''} ${this.props.conf.visual}`}
                     onClick={this.props.onClick}>
                     {
                         Array.from(Array(this.props.conf.count).keys()).map((i, k) => {
-                            const fill = this.props.conf.fill === 'empty' ? 'far' : 'fas';
-                            // return <div className={`icon ${this.props.conf.fill} ${this.props.conf.shape}`} key={k}></div>
-                            return <div className={`icon ${this.props.conf.fill} ${this.props.conf.shape}`} key={k}>
-                                <i className={`${fill} fa-${this.props.conf.shape}`}></i>
+                            const fill = this.props.conf.fill === 'empty' ? (this.props.conf.shape === 'circle' ? '-thin' : '-o') : ''
+                            return <div key={k}>
+                                {this.props.conf.fill === 'shaded' ?
+                                    <span className='fa-stack'>
+                                        <i className={`fa fa-${this.props.conf.shape}${fill} fa-stack-2x`}></i>
+                                        <i className={`fa fa-${this.props.conf.shape}${fill} fa-inverse fa-stack-1x`}></i>
+                                    </span> :
+                                    <i className={`fa fa-${this.props.conf.shape}${fill}`} aria-hidden='true'></i>
+                                }
                             </div>
                         })
                     }

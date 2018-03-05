@@ -95,8 +95,8 @@ export default class Digilog extends React.Component {
                     <div className="mode-selector">
                         <div>
                             <label className={`sans-serif ${this.state.mode === 0 ? 'chosen' : ''}`} onClick={this.switchMode.bind(this, 0)}>Analog</label>
-                            {this.state.mode === 0 && <div className="fa-holder"><i className="fas fa-toggle-off"></i></div>}
-                            {this.state.mode === 1 && <div className="fa-holder"><i className="fas fa-toggle-on"></i></div>}
+                            {this.state.mode === 0 && <div className="fa-holder"><i className="fa fa-toggle-off"></i></div>}
+                            {this.state.mode === 1 && <div className="fa-holder"><i className="fa fa-toggle-on"></i></div>}
                             <label className={`sans-serif ${this.state.mode === 1 ? 'chosen' : ''}`} onClick={this.switchMode.bind(this, 1)}>Digital</label>
                         </div>
                     </div>

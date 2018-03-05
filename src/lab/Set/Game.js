@@ -1,6 +1,5 @@
 import Card from './Card'
 import Cookies from 'universal-cookie'
-import Leaderboard from './Leaderboard'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -442,72 +441,58 @@ export default class Game extends React.Component {
                     ${sec ? ' ' + sec + ' sec' : ''}`
     }
 
-    render() {
+    render() { 
+        if (!(this.state.deck.length > 0 || this.state.possible > 0)) {
+            console.log('update')
+            this.props.updateStats(this.state.score, this.state.hintCount, this.timeTaken(), true)
+        }
+
         return (
             <GameContainer>
                 <div className={`set ${this.props.difficulty === 0 ? 'easy' : 'medium'}`}>
-                    {(this.state.deck.length > 0 || this.state.possible > 0) &&
-                        <div className="stats">
-                            <div>
-                                <div className="fa-holder"><i className="fas fa-gamepad"></i></div>
-                                {this.state.possible}
-                            </div>
-                            <div>
-                                <div className="fa-holder"><i className="fas fa-th"></i></div>
-                                {this.state.deck.length}
-                            </div>
-                            <div>
-                                <div className="fa-holder"><i className="fas fa-trophy"></i></div>
-                                {this.state.score}
-                            </div>
-                            {this.props.timed &&
-                                <progress className="gameTimer" value={this.state.progressWidth} max="100"></progress>
+                    <div className="stats">
+                        <div>
+                            <div className="fa-holder"><i className="fa fa-gamepad"></i></div>
+                            {this.state.possible}
+                        </div>
+                        <div>
+                            <div className="fa-holder"><i className="fa fa-th"></i></div>
+                            {this.state.deck.length}
+                        </div>
+                        <div>
+                            <div className="fa-holder"><i className="fa fa-trophy"></i></div>
+                            {this.state.score}
+                        </div>
+                        {this.props.timed &&
+                            <progress className="gameTimer" value={this.state.progressWidth} max="100"></progress>
+                        }
+                    </div>
+                    <div className="playpen">
+                        {this.state.notification.val &&
+                            <div className={`notification type${this.state.notification.type}`}>{this.state.notification.val}</div>
+                        }
+                        <div className={`cards ${this.state.notification.val ? 'blur' : ''}`}>
+                            {this.state.hand.map((i, k) => {
+                                return <div key={k} className="cardbox">
+                                    <Card conf={i} onClick={this.cardClick.bind(this, i)}></Card>
+                                </div>
+                            })
                             }
                         </div>
-                    }
-                    {(this.state.deck.length > 0 || this.state.possible > 0) ?
-                        <div className="playpen">
-                            {this.state.notification.val &&
-                                <div className={`notification type${this.state.notification.type}`}>{this.state.notification.val}</div>
-                            }
-                            <div className={`cards ${this.state.notification.val ? 'blur' : ''}`}>
-                                {this.state.hand.map((i, k) => {
-                                    return <div key={k} className="cardbox">
-                                        <Card conf={i} onClick={this.cardClick.bind(this, i)}></Card>
-                                    </div>
-                                })
-                                }
-                            </div>
-                        </div> :
-                        <div className="final-stats">
-                            <div className="over">Game Over</div>
-                            <div>Score: {this.state.score}</div>
-                            {this.props.timed && <div>Time Taken: {this.showTime()}</div>}
-                            <Leaderboard
-                                score={this.state.score}
-                                hints={this.state.hintCount}
-                                time={this.timeTaken()}>
-                            </Leaderboard>
-                            <div>
-                                <button onClick={this.props.endGame}>New Game</button>
-                            </div>
+                    </div>
+                    <div className="stats">
+                        <div>
+                            <a onClick={this.showHint.bind(this)}>
+                                <div className="fa-holder"><i className="fa fa-question-circle"></i></div>
+                            </a>
                         </div>
-                    }
-                    {(this.state.deck.length > 0 || this.state.possible > 0) &&
-                        <div className="stats">
-                            <div>
-                                <a onClick={this.showHint.bind(this)}>
-                                    <div className="fa-holder"><i className="fas fa-question-circle"></i></div>
-                                </a>
-                            </div>
-                            <div></div>
-                            <div>
-                                <a onClick={this.shuffleHand.bind(this)}>
-                                    <div className="fa-holder"><i className="fas fa-random"></i></div>
-                                </a>
-                            </div>
+                        <div></div>
+                        <div>
+                            <a onClick={this.shuffleHand.bind(this)}>
+                                <div className="fa-holder"><i className="fa fa-random"></i></div>
+                            </a>
                         </div>
-                    }
+                    </div>
                 </div>
             </GameContainer>
         )

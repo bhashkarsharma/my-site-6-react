@@ -8,7 +8,6 @@ import Title from '../../components/Title'
 import styled from 'styled-components'
 
 const GameContainer = styled.div`
-// font-family: "Comic Sans MS", sans-serif;
 
     .backButton {
         border: 2px solid;
@@ -53,12 +52,26 @@ export default class SetGame extends React.Component {
         this.state = {
             difficulty: 1,
             display: 0,
+            gameOver: false,
+            hints: 0,
+            score: 0,
+            time: 0,
             timed: false
         }
     }
 
     showView(display) {
         this.setState({ display })
+        if (display === 2) {
+            this.updateStats(0, 0, 0, false)
+        }
+    }
+
+    updateStats(score, hints, time, gameOver) {
+        this.setState({ score, hints, time, gameOver })
+        if (gameOver) {
+            this.showView(3)
+        }
     }
 
     render() {
@@ -71,9 +84,9 @@ export default class SetGame extends React.Component {
                     {{
                         0: (
                             <Menu>
-                                <div onClick={this.showView.bind(this, 1)}>Instructions</div>
+                                {/* <div onClick={this.showView.bind(this, 1)}>Instructions</div> */}
                                 <div onClick={this.showView.bind(this, 2)}>Start Game</div>
-                                <div onClick={this.showView.bind(this, 2)}>Resume Game</div>
+                                {/* <div onClick={this.showView.bind(this, 2)}>Resume Game</div> */}
                                 <div onClick={this.showView.bind(this, 3)}>Leaderboard</div>
                             </Menu>
                         ),
@@ -81,10 +94,19 @@ export default class SetGame extends React.Component {
                             <Instructions></Instructions>
                         ),
                         2: (
-                            <Game difficulty={this.state.difficulty}></Game>
+                            <Game
+                                difficulty={this.state.difficulty}
+                                timed={this.state.timed}
+                                updateStats={this.updateStats.bind(this)}>
+                            </Game>
                         ),
                         3: (
-                            <Leaderboard></Leaderboard>
+                            <Leaderboard 
+                                gameOver={this.state.gameOver}
+                                score={this.state.score}
+                                hints={this.state.hintCount}
+                                time={this.state.time}>
+                            </Leaderboard>
                         )
                     }[this.state.display]}
                 </GameContainer>
