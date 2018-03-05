@@ -88,7 +88,7 @@ const CardContainer = styled.div`
             }
 
             .fa-stack {
-                font-size: 0.75vw;
+                font-size: 14px;
             }
         }
     }
