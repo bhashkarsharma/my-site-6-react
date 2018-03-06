@@ -38,10 +38,7 @@ const GameContainer = styled.div`
                 border: 1px solid;
                 border-radius: 5px;
                 display: inline-block;
-                
-                &:not([href]) {
-                    border: none;
-                }
+                padding: 2px 4px;
             }
         }
 
@@ -280,6 +277,9 @@ export default class Game extends React.Component {
             score
         })
         this.showNotification(2)
+        if (!(this.state.deck.length > 0 || this.state.possible > 0)) {
+            this.props.updateStats(this.state.score, this.state.hintCount, this.timeTaken(), true)
+        }
     }
 
     calculateAvailablePoints() {
@@ -441,12 +441,7 @@ export default class Game extends React.Component {
                     ${sec ? ' ' + sec + ' sec' : ''}`
     }
 
-    render() { 
-        if (!(this.state.deck.length > 0 || this.state.possible > 0)) {
-            console.log('update')
-            this.props.updateStats(this.state.score, this.state.hintCount, this.timeTaken(), true)
-        }
-
+    render() {
         return (
             <GameContainer>
                 <div className={`set ${this.props.difficulty === 0 ? 'easy' : 'medium'}`}>

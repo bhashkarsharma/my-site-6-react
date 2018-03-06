@@ -104,7 +104,7 @@ export default class SetGame extends React.Component {
                             <Leaderboard 
                                 gameOver={this.state.gameOver}
                                 score={this.state.score}
-                                hints={this.state.hintCount}
+                                hints={this.state.hints}
                                 time={this.state.time}>
                             </Leaderboard>
                         )

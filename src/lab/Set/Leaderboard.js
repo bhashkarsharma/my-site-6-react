@@ -25,6 +25,7 @@ text-align: center;
         }
 
     }
+    
     .scoreboard {
         border: 1px solid;
         width: 100%;
@@ -38,6 +39,7 @@ text-align: center;
             text-align: center;
         }
     }
+
     @keyframes rainbow { 
         0% {
             background-position: 0% 82%;
@@ -108,7 +110,7 @@ export default class Leaderboard extends React.Component {
     render() {
         return (
             <LeaderboardContainer>
-                {(this.props.gameOver || !this.state.saved) ? 
+                {(this.props.gameOver && !this.state.saved) ? 
                 <div className="scoreForm">
                     <input
                         type="text"
@@ -118,28 +120,32 @@ export default class Leaderboard extends React.Component {
                         onChange={this.handleNameChange.bind(this)} />
                     <button onClick={this.saveScore.bind(this)}>Save</button>
                 </div> :
-                <table className="scoreboard">
-                    <thead>
-                        <tr>
-                            <th>User</th>
-                            <th>Score</th>
-                            <th>Time</th>
-                            <th>Hints</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {
-                        this.state.top.map((i, k) => {
-                            return <tr key={k}>
-                                <td>{i.name}</td>
-                                <td>{i.score}</td>
-                                <td>{i.time ? i.time : '-'}</td>
-                                <td>{i.hints ? i.hints : '-'}</td>
+                <div>
+                    {this.state.top.length > 0 ? 
+                    <table className="scoreboard">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Score</th>
+                                <th>Time</th>
+                                <th>Hints</th>
                             </tr>
-                        })
-                    }
-                    </tbody>
-                </table>}
+                        </thead>
+                        <tbody>
+                        {
+                            this.state.top.map((i, k) => {
+                                return <tr key={k}>
+                                    <td>{i.name}</td>
+                                    <td>{i.score}</td>
+                                    <td>{i.time ? i.time : '-'}</td>
+                                    <td>{i.hints ? i.hints : '-'}</td>
+                                </tr>
+                            })
+                        }
+                        </tbody>
+                    </table> : 
+                    <div>Loading...</div>}
+                </div>}
             </LeaderboardContainer>
         )
     }
