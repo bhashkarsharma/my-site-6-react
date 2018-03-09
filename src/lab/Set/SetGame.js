@@ -21,6 +21,25 @@ const GameContainer = styled.div`
             color: grey;
         }
     }
+
+    .mode-selector {
+        margin: 2vw;
+        text-align: center;
+
+        label {
+            display: inline-block;
+            font-size: 1.2em;
+            margin: 1vw 2vw;
+
+            &.chosen {
+                font-weight: bold;
+            }
+        }
+
+        .fa-holder {
+            display: inline-block;
+        }
+    }
 `
 
 const Menu = styled.div`
@@ -50,7 +69,7 @@ export default class SetGame extends React.Component {
     constructor() {
         super()
         this.state = {
-            difficulty: 1,
+            difficulty: 0,
             display: 0,
             gameOver: false,
             hints: 0,
@@ -58,6 +77,14 @@ export default class SetGame extends React.Component {
             time: 0,
             timed: false
         }
+    }
+
+    setDifficulty(difficulty) {
+        this.setState({ difficulty })
+    }
+
+    setTimed(timed) {
+        this.setState({ timed })
     }
 
     showView(display) {
@@ -87,20 +114,37 @@ export default class SetGame extends React.Component {
                                 {/* <div onClick={this.showView.bind(this, 1)}>Instructions</div> */}
                                 <div onClick={this.showView.bind(this, 2)}>Start Game</div>
                                 {/* <div onClick={this.showView.bind(this, 2)}>Resume Game</div> */}
-                                <div onClick={this.showView.bind(this, 3)}>Leaderboard</div>
+                                <div onClick={this.showView.bind(this, 4)}>Leaderboard</div>
                             </Menu>
                         ),
                         1: (
                             <Instructions></Instructions>
                         ),
                         2: (
+                            <div className="mode-selector">
+                                <div>
+                                    <label className={`sans-serif ${this.state.difficulty === 0 ? 'chosen' : ''}`} onClick={this.setDifficulty.bind(this, 0)}>Easy</label>
+                                    {this.state.difficulty === 0 && <div className="fa-holder"><i className="fa fa-toggle-off"></i></div>}
+                                    {this.state.difficulty === 1 && <div className="fa-holder"><i className="fa fa-toggle-on"></i></div>}
+                                    <label className={`sans-serif ${this.state.difficulty === 1 ? 'chosen' : ''}`} onClick={this.setDifficulty.bind(this, 1)}>Medium</label>
+                                </div>
+                                <div>
+                                    <label className={`sans-serif ${!this.state.timed ? 'chosen' : ''}`} onClick={this.setTimed.bind(this, false)}>Free</label>
+                                    {this.state.timed === false && <div className="fa-holder"><i className="fa fa-toggle-off"></i></div>}
+                                    {this.state.timed === true && <div className="fa-holder"><i className="fa fa-toggle-on"></i></div>}
+                                    <label className={`sans-serif ${this.state.timed ? 'chosen' : ''}`} onClick={this.setTimed.bind(this, true)}>Timed</label>
+                                </div>
+                                <button onClick={this.showView.bind(this, 3)}>Proceed</button>
+                            </div>
+                        ),
+                        3: (
                             <Game
                                 difficulty={this.state.difficulty}
                                 timed={this.state.timed}
                                 updateStats={this.updateStats.bind(this)}>
                             </Game>
                         ),
-                        3: (
+                        4: (
                             <Leaderboard 
                                 gameOver={this.state.gameOver}
                                 score={this.state.score}
