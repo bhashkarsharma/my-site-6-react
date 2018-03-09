@@ -40,7 +40,7 @@ const LinkTitle = styled.span`
 
 export default class Lab extends React.Component {
     render() {
-        return <Page>
+        return <Page style={{textAlign: 'center'}}>
             <Title>Lab</Title>
             {labRoutes.map((r, i) => (
                 <Linkbox key={i}>

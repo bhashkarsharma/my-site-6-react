@@ -39,8 +39,8 @@ export default () => (
     <Tools>
         <div>Angular</div>
         <div>AWS</div>
-        <div>Gulp</div>
         <div>CSS3</div>
+        <div>Gulp</div>
         <div>HTML5</div>
         <div>JS</div>
         <div>Node</div>
