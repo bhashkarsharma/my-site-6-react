@@ -9,7 +9,7 @@ import styled from 'styled-components'
 
 const GameContainer = styled.div`
 
-    .backButton {
+    .button {
         border: 2px solid;
         border-radius: 4px;
         cursor: pointer;
@@ -107,12 +107,12 @@ export default class SetGame extends React.Component {
                 <Title>Set</Title>
                 <GameContainer>
                     {this.state.display > 0 &&
-                        <div className="backButton" onClick={this.showView.bind(this, 0)}>Back</div>}
+                        <div className="button" onClick={this.showView.bind(this, 0)}>Back</div>}
                     {{
                         0: (
                             <Menu>
                                 {/* <div onClick={this.showView.bind(this, 1)}>Instructions</div> */}
-                                <div onClick={this.showView.bind(this, 2)}>Start Game</div>
+                                <div onClick={this.showView.bind(this, 2)}>Play Game</div>
                                 {/* <div onClick={this.showView.bind(this, 2)}>Resume Game</div> */}
                                 <div onClick={this.showView.bind(this, 4)}>Leaderboard</div>
                             </Menu>
@@ -134,7 +134,7 @@ export default class SetGame extends React.Component {
                                     {this.state.timed === true && <div className="fa-holder"><i className="fa fa-toggle-on"></i></div>}
                                     <label className={`sans-serif ${this.state.timed ? 'chosen' : ''}`} onClick={this.setTimed.bind(this, true)}>Timed</label>
                                 </div>
-                                <button onClick={this.showView.bind(this, 3)}>Proceed</button>
+                                <div className="button" onClick={this.showView.bind(this, 3)}>Start</div>
                             </div>
                         ),
                         3: (
