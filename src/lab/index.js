@@ -8,6 +8,7 @@ import React from 'react'
 import Segment from './Segment/Segment'
 import SetGame from './Set/SetGame'
 import Title from '../components/Title'
+import Voronoi from './Voronoi/Voronoi'
 import styled from 'styled-components'
 
 export const labRoutes = [
@@ -30,6 +31,11 @@ export const labRoutes = [
         title: 'Set',
         path: 'set',
         component: SetGame
+    },
+    {
+        title: 'Voronoi',
+        path: 'voronoi',
+        component: Voronoi
     }
 ]
 
