@@ -9,7 +9,7 @@ export default class Voronoi extends React.Component {
         this.canvas = null
         this.count = 0
     }
-    
+
     componentDidMount() {
         this.updateSize()
         window.addEventListener('resize', this.updateSize.bind(this))
@@ -42,41 +42,42 @@ export default class Voronoi extends React.Component {
         const imgy = this.canvas.height
         const nx = []
         const ny = []
-        const nr = []
-        const ng = []
-        const nb = []
-        for (let i=0; i<cells; i++) {
+        const nc = []
+        for (let i = 0; i < cells; i++) {
             nx.push(this.getRand(imgx))
             ny.push(this.getRand(imgy))
-            nr.push(this.getRand(256))
-            ng.push(this.getRand(256))
-            nb.push(this.getRand(256))
+            nc.push('#' + (Math.random() * 0xFFFFFF << 0).toString(16))
         }
         const step = 10
         const hyp = this.getHyp(imgx - 1, imgy - 1)
-        for (let y=0; y<imgy; y+=step) {
-            for (let x=0; x<imgx; x+=step) {
-                let dmin = hyp
-                let j = -1
-                for (let i=0; i<cells; i++) {
-                    const d = this.getHyp(nx[i] - x, ny[i] - y)
-                    if (d < dmin) {
-                        dmin = d
-                        j = i
-                    }
-                }
-                ctx.fillStyle = `rgb(${nr[j]},${ng[j]},${nb[j]})`
-                const s = 10
+        for (let y = 0; y < imgy; y += step) {
+            for (let x = 0; x < imgx; x += step) {
+                const j = this.getColorIndex(cells, x, y, nx, ny, hyp)
+                ctx.fillStyle = nc[j]
+                const s = 8
                 ctx.fillRect(x, y, s, s)
             }
         }
         ctx.fillStyle = 'black'
-        for (let i=0; i<cells; i++) {
+        for (let i = 0; i < cells; i++) {
             ctx.beginPath()
-            ctx.arc(nx[i], ny[i], 4, 0, Math.PI*2)
+            ctx.arc(nx[i], ny[i], 4, 0, Math.PI * 2)
             ctx.fill()
         }
         console.log(new Date() - date, this.count)
+    }
+
+    getColorIndex(cells, x, y, nx, ny, hyp) {
+        let dmin = hyp
+        let j = -1
+        for (let i = 0; i < cells; i++) {
+            const d = this.getHyp(nx[i] - x, ny[i] - y)
+            if (d < dmin) {
+                dmin = d
+                j = i
+            }
+        }
+        return j
     }
 
     render() {
