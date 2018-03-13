@@ -2,11 +2,6 @@ import Helmet from 'react-helmet'
 import LabPage from '../../components/LabPage'
 import React from 'react'
 import Title from '../../components/Title'
-import styled from 'styled-components'
-
-const VoronoiContainer = styled.canvas`
-border: 1px solid;
-`
 
 export default class Voronoi extends React.Component {
     constructor() {
@@ -25,8 +20,8 @@ export default class Voronoi extends React.Component {
     }
 
     updateSize() {
-        this.canvas.width = 40 //window.innerWidth
-        this.canvas.height = 40 //window.innerHeight
+        this.canvas.width = window.innerWidth
+        this.canvas.height = window.innerHeight
         this.draw()
     }
 
@@ -40,10 +35,9 @@ export default class Voronoi extends React.Component {
     }
 
     draw() {
-        console.log(this.canvas)
         const date = new Date()
         const ctx = this.canvas.getContext('2d')
-        const cells = 2
+        const cells = 10
         const imgx = this.canvas.width
         const imgy = this.canvas.height
         const nx = []
@@ -58,22 +52,22 @@ export default class Voronoi extends React.Component {
             ng.push(this.getRand(256))
             nb.push(this.getRand(256))
         }
-        console.log(nx, ny)
+        const step = 10
         const hyp = this.getHyp(imgx - 1, imgy - 1)
-        for (let y=0; y<imgy; y++) {
-            for (let x=0; x<imgx; x++) {
+        for (let y=0; y<imgy; y+=step) {
+            for (let x=0; x<imgx; x+=step) {
                 let dmin = hyp
                 let j = -1
                 for (let i=0; i<cells; i++) {
                     const d = this.getHyp(nx[i] - x, ny[i] - y)
-                    console.log(nx[i] - x, ny[i] - y, Math.floor(d))
                     if (d < dmin) {
                         dmin = d
                         j = i
                     }
                 }
                 ctx.fillStyle = `rgb(${nr[j]},${ng[j]},${nb[j]})`
-                ctx.fillRect(x, y, 1, 1)
+                const s = 10
+                ctx.fillRect(x, y, s, s)
             }
         }
         ctx.fillStyle = 'black'
