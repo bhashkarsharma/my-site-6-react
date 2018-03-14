@@ -286,6 +286,7 @@ export default class Bg extends React.Component {
     constructor() {
         super()
         this.canvas = null
+        this.updateSize = this.updateSize.bind(this)
     }
 
     componentDidMount() {
