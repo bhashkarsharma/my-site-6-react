@@ -13,8 +13,9 @@ export default class Voronoi extends React.Component {
         super()
         this.canvas = null
         this.count = 0
-        this.state = { cells: 10 }
+        this.state = { cells: 4, stats: '' }
         this.updateSize = this.updateSize.bind(this)
+        this.setCells = this.setCells.bind(this)
     }
 
     componentDidMount() {
@@ -26,8 +27,14 @@ export default class Voronoi extends React.Component {
         window.removeEventListener('resize', this.updateSize.bind(this))
     }
 
+    setCells(event) {
+        this.setState({ cells: event.target.value })
+        this.count = 0
+        this.draw()
+    }
+
     updateSize() {
-        this.canvas.width = window.innerWidth
+        this.canvas.width = this.canvas.parentElement.clientWidth
         this.canvas.height = window.innerHeight
         this.draw()
     }
@@ -52,12 +59,13 @@ export default class Voronoi extends React.Component {
         const ny = []
         const nc = []
         for (let i = 0; i < cells; i++) {
-            nx.push(this.getRand(imgx))
-            ny.push(this.getRand(imgy))
+            nx.push(10 + this.getRand(imgx - 10))
+            ny.push(10 + this.getRand(imgy - 10))
             nc.push(COLORS[i % COLORS.length])
         }
+        ctx.clearRect(0, 0, imgx, imgy)
         const hyp = this.getHyp(imgx - 1, imgy - 1)
-        for (let y = 0; y < imgy; y ++) {
+        for (let y = 0; y < imgy; y++) {
             let d = {}
             this.getColorMapForRow(y, hyp, cells, nx, ny, 0, imgx, d)
             Object.keys(d).forEach(i => {
@@ -69,14 +77,13 @@ export default class Voronoi extends React.Component {
                 ctx.stroke()
             })
         }
-        ctx.fillStyle = 'black'
+        ctx.fillStyle = 'rgba(0,0,0,0.50)'
         for (let i = 0; i < cells; i++) {
             ctx.beginPath()
             ctx.arc(nx[i], ny[i], 4, 0, Math.PI * 2)
             ctx.fill()
         }
-        ctx.font = '16px bold sans-serif'
-        ctx.fillText(`${new Date() - date}ms - ${this.count}`, 10, 20)
+        this.setState({ stats: `${new Date() - date} ms - ${this.count} ops` })
     }
 
     getColorKey(x, y, hyp, cells, nx, ny) {
@@ -118,8 +125,10 @@ export default class Voronoi extends React.Component {
         const mid = min + Math.floor((max - min) / 2)
         const b = this.getColorKey(mid, y, hyp, cells, nx, ny)
         if (a === b) {
+            this.setVal(d, a, min, mid)
             this.getColorMapForRow(y, hyp, cells, nx, ny, mid, max, d)
         } else if (b === c) {
+            this.setVal(d, c, mid, max)
             this.getColorMapForRow(y, hyp, cells, nx, ny, min, mid, d)
         } else {
             this.getColorMapForRow(y, hyp, cells, nx, ny, mid, max, d)
@@ -132,6 +141,15 @@ export default class Voronoi extends React.Component {
             <LabPage>
                 <Title>Voronoi</Title>
                 <canvas ref={can => { if (can !== null) this.canvas = can }}></canvas>
+                <div>
+                    <input type="range"
+                        min="1" 
+                        max="20" 
+                        step="1" 
+                        value={this.state.cells}
+                        onChange={this.setCells} /> {this.state.cells}
+                </div>
+                <div>{this.state.stats}</div>
                 <Helmet title='Voronoi' />
             </LabPage>
         )
