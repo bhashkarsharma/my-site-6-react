@@ -28,8 +28,10 @@ export default class Voronoi extends React.Component {
     }
 
     setCells(event) {
-        this.setState({ cells: event.target.value }, () => { this.draw() })
-        this.count = 0
+        this.setState({ cells: event.target.value }, () => {
+            this.count = 0
+            this.draw()
+        })
     }
 
     updateSize() {
