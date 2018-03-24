@@ -1,5 +1,6 @@
 import Helmet from 'react-helmet'
 import LabPage from '../../components/LabPage'
+import ModeSelector from '../../components/ModeSelector'
 import React from 'react'
 import Title from '../../components/Title'
 
@@ -13,25 +14,54 @@ export default class Voronoi extends React.Component {
         super()
         this.canvas = null
         this.count = 0
-        this.state = { cells: 4, stats: '' }
+        this.state = { random: true, cells: 4, stats: '', nx: [], ny: [] }
         this.updateSize = this.updateSize.bind(this)
         this.setCells = this.setCells.bind(this)
+        this.canvasClick = this.canvasClick.bind(this)
     }
 
     componentDidMount() {
         this.updateSize()
         window.addEventListener('resize', this.updateSize.bind(this))
+        this.createRandomPoints()
     }
 
     componentWillUnmount() {
         window.removeEventListener('resize', this.updateSize.bind(this))
     }
 
+    createRandomPoints() {
+        if (this.state.random) {
+            const nx = [], ny = []
+            for (let i = 0; i < this.state.cells; i++) {
+                nx.push(10 + this.getRand(this.canvas.width - 10))
+                ny.push(10 + this.getRand(this.canvas.height - 10))
+            }
+            this.setState({ nx, ny }, () => this.draw())
+        }
+    }
+
     setCells(event) {
         this.setState({ cells: event.target.value }, () => {
             this.count = 0
-            this.draw()
+            this.createRandomPoints()
         })
+    }
+
+    switchMode(random) {
+        this.setState({ random, cells: 0, nx: [], ny: [] }, () => this.draw())
+    }
+
+    canvasClick(event) {
+        if (!this.state.random && this.state.cells < 50) {
+            const elem = event.nativeEvent
+            const cells = this.state.cells + 1
+            const nx = this.state.nx
+            const ny = this.state.ny
+            nx.push(elem.offsetX)
+            ny.push(elem.offsetY)
+            this.setState({ cells, nx, ny }, () => this.draw())
+        }
     }
 
     updateSize() {
@@ -56,12 +86,10 @@ export default class Voronoi extends React.Component {
         const cells = this.state.cells
         const imgx = this.canvas.width
         const imgy = this.canvas.height
-        const nx = []
-        const ny = []
+        const nx = this.state.nx
+        const ny = this.state.ny
         const nc = []
         for (let i = 0; i < cells; i++) {
-            nx.push(10 + this.getRand(imgx - 10))
-            ny.push(10 + this.getRand(imgy - 10))
             nc.push(COLORS[i % COLORS.length])
         }
         ctx.clearRect(0, 0, imgx, imgy)
@@ -119,8 +147,6 @@ export default class Voronoi extends React.Component {
             return
         }
         if (max - min <= 1) {
-            this.setVal(d, a, min, min)
-            this.setVal(d, c, max, max)
             return
         }
         const mid = min + Math.floor((max - min) / 2)
@@ -141,16 +167,28 @@ export default class Voronoi extends React.Component {
         return (
             <LabPage>
                 <Title>Voronoi</Title>
-                <canvas ref={can => { if (can !== null) this.canvas = can }}></canvas>
-                <div>
-                    <input type="range"
-                        min="1" 
-                        max="20" 
-                        step="1" 
-                        value={this.state.cells}
-                        onChange={this.setCells} /> {this.state.cells}
-                </div>
+                <canvas
+                    ref={can => { if (can !== null) this.canvas = can }}
+                    style={{border: '2px solid'}}
+                    onClick={this.canvasClick}>
+                </canvas>
                 <div>{this.state.stats}</div>
+                <ModeSelector>
+                    <label className={`sans-serif ${this.state.random ? 'chosen' : ''}`} onClick={this.switchMode.bind(this, true)}>Random</label>
+                    {this.state.random && <div className="fa-holder"><i className="fa fa-toggle-off"></i></div>}
+                    {!this.state.random && <div className="fa-holder"><i className="fa fa-toggle-on"></i></div>}
+                    <label className={`sans-serif ${!this.state.random ? 'chosen' : ''}`} onClick={this.switchMode.bind(this, false)}>Plotted</label>
+                    {this.state.random &&
+                        <div>
+                            <input type="range"
+                                min="1" 
+                                max="20" 
+                                step="1" 
+                                value={this.state.cells}
+                                onChange={this.setCells} /> {this.state.cells}
+                        </div>
+                    }
+                </ModeSelector>
                 <Helmet title='Voronoi' />
             </LabPage>
         )

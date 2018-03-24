@@ -3,43 +3,24 @@ import Helmet from 'react-helmet'
 import Instructions from './Instructions'
 import LabPage from '../../components/LabPage'
 import Leaderboard from './Leaderboard'
+import ModeSelector from '../../components/ModeSelector'
 import React from 'react'
 import Title from '../../components/Title'
 import styled from 'styled-components'
 
 const GameContainer = styled.div`
+.button {
+    border: 2px solid;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.8em;
+    padding: 2px 4px;
 
-    .button {
-        border: 2px solid;
-        border-radius: 4px;
-        cursor: pointer;
-        display: inline-block;
-        font-size: 0.8em;
-        padding: 2px 4px;
-
-        &:hover {
-            color: grey;
-        }
+    &:hover {
+        color: grey;
     }
-
-    .mode-selector {
-        margin: 2vw;
-        text-align: center;
-
-        label {
-            display: inline-block;
-            font-size: 1.2em;
-            margin: 1vw 2vw;
-
-            &.chosen {
-                font-weight: bold;
-            }
-        }
-
-        .fa-holder {
-            display: inline-block;
-        }
-    }
+}
 `
 
 const Menu = styled.div`
@@ -121,7 +102,7 @@ export default class SetGame extends React.Component {
                             <Instructions></Instructions>
                         ),
                         2: (
-                            <div className="mode-selector">
+                            <ModeSelector>
                                 <div>
                                     <label className={`sans-serif ${this.state.difficulty === 0 ? 'chosen' : ''}`} onClick={this.setDifficulty.bind(this, 0)}>Easy</label>
                                     {this.state.difficulty === 0 && <div className="fa-holder"><i className="fa fa-toggle-off"></i></div>}
@@ -135,7 +116,7 @@ export default class SetGame extends React.Component {
                                     <label className={`sans-serif ${this.state.timed ? 'chosen' : ''}`} onClick={this.setTimed.bind(this, true)}>Timed</label>
                                 </div>
                                 <div className="button" onClick={this.showView.bind(this, 3)}>Start</div>
-                            </div>
+                            </ModeSelector>
                         ),
                         3: (
                             <Game

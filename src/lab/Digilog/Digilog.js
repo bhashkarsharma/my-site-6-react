@@ -1,36 +1,18 @@
 import Face from './Face'
 import Helmet from 'react-helmet'
 import LabPage from '../../components/LabPage'
+import ModeSelector from '../../components/ModeSelector'
 import React from 'react'
 import Title from '../../components/Title'
 import styled from 'styled-components'
 
 const DigilogContainer = styled.div`
-    margin: 2vw 0;
-    
-    .face-box {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-    }
+margin: 2vw 0;
 
-    .mode-selector {
-        margin: 2vw;
-        text-align: center;
-
-        label {
-            display: inline-block;
-            font-size: 1.2em;
-            margin: 1vw 2vw;
-
-            &.chosen {
-                font-weight: bold;
-            }
-        }
-
-        .fa-holder {
-            display: inline-block;
-        }
-    }
+.face-box {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
 `
 
 export default class Digilog extends React.Component {
@@ -92,14 +74,14 @@ export default class Digilog extends React.Component {
                         })
                     }
                     </div>
-                    <div className="mode-selector">
+                    <ModeSelector>
                         <div>
                             <label className={`sans-serif ${this.state.mode === 0 ? 'chosen' : ''}`} onClick={this.switchMode.bind(this, 0)}>Analog</label>
                             {this.state.mode === 0 && <div className="fa-holder"><i className="fa fa-toggle-off"></i></div>}
                             {this.state.mode === 1 && <div className="fa-holder"><i className="fa fa-toggle-on"></i></div>}
                             <label className={`sans-serif ${this.state.mode === 1 ? 'chosen' : ''}`} onClick={this.switchMode.bind(this, 1)}>Digital</label>
                         </div>
-                    </div>
+                    </ModeSelector>
                 </DigilogContainer>
                 <Helmet title='Digilog' />
             </LabPage>
