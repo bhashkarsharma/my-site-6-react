@@ -178,7 +178,7 @@ export default class Voronoi extends React.Component {
                     {this.state.random && <div className="fa-holder"><i className="fa fa-toggle-off"></i></div>}
                     {!this.state.random && <div className="fa-holder"><i className="fa fa-toggle-on"></i></div>}
                     <label className={`sans-serif ${!this.state.random ? 'chosen' : ''}`} onClick={this.switchMode.bind(this, false)}>Plotted</label>
-                    {this.state.random &&
+                    {this.state.random ?
                         <div>
                             <input type="range"
                                 min="1" 
@@ -186,8 +186,10 @@ export default class Voronoi extends React.Component {
                                 step="1" 
                                 value={this.state.cells}
                                 onChange={this.setCells} /> {this.state.cells}
-                        </div>
+                        </div> :
+                        <div>Click in the box to plot points.</div>
                     }
+                    <div>Consult <a href="https://en.wikipedia.org/wiki/Voronoi_diagram">Wikipedia</a> for more information.</div>
                 </ModeSelector>
                 <Helmet title='Voronoi' />
             </LabPage>
