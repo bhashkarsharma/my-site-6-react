@@ -9,6 +9,9 @@ import Title from '../../components/Title'
 import styled from 'styled-components'
 
 const GameContainer = styled.div`
+max-width: 700px;
+margin: auto;
+
 .button {
     border: 2px solid;
     border-radius: 4px;

@@ -7,7 +7,8 @@ import Title from '../../components/Title'
 import styled from 'styled-components'
 
 const DigilogContainer = styled.div`
-margin: 2vw 0;
+margin: 2vw auto;
+max-width: 1140px;
 
 .face-box {
     display: grid;

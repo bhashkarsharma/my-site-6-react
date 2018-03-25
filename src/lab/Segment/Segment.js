@@ -7,6 +7,8 @@ import styled from 'styled-components'
 
 const SegmentContainer = styled.div`
     margin: 100px auto;
+    max-width: 1140px;
+
     .error-message {
         display: none;
     }
