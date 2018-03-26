@@ -50,7 +50,7 @@ export default class Particles extends React.Component {
     }
 
     posOrNeg() {
-        return this.getRand(1) * 2 - 1
+        return this.getRand(2) * 2 - 1
     }
 
     drawParticle(ctx, p) {
@@ -73,7 +73,7 @@ export default class Particles extends React.Component {
 
     checkCollision(x, max) {
         const size = this.state.size
-        return (x >= max - size/2 || x - size/2 <= 0)
+        return (x >= max - size / 2 || x - size / 2 <= 0)
     }
 
     distParticles(a, b) {
@@ -95,7 +95,7 @@ export default class Particles extends React.Component {
         const particles = this.state.particles
         for (let i = 0; i < count - 1; i++) {
             const p1 = particles[i]
-            for (let j = i+1; j < count; j++) {
+            for (let j = i + 1; j < count; j++) {
                 const p2 = particles[j]
                 const dist = this.distParticles(p1, p2)
                 if (dist <= maxdist) {
@@ -122,7 +122,7 @@ export default class Particles extends React.Component {
                 <Title>Particles</Title>
                 <canvas
                     ref={can => { if (can !== null) this.canvas = can }}
-                    style={{border: '2px solid', background: 'black'}}>
+                    style={{ border: '2px solid', background: 'black' }}>
                 </canvas>
                 <Helmet title="Particles" />
             </LabPage>
