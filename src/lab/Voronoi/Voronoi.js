@@ -13,7 +13,6 @@ export default class Voronoi extends React.Component {
     constructor() {
         super()
         this.canvas = null
-        this.count = 0
         this.state = { random: true, cells: 4, stats: '', nx: [], ny: [] }
         this.updateSize = this.updateSize.bind(this)
         this.setCells = this.setCells.bind(this)
@@ -22,12 +21,12 @@ export default class Voronoi extends React.Component {
 
     componentDidMount() {
         this.updateSize()
-        window.addEventListener('resize', this.updateSize.bind(this))
+        window.addEventListener('resize', this.updateSize)
         this.createRandomPoints()
     }
 
     componentWillUnmount() {
-        window.removeEventListener('resize', this.updateSize.bind(this))
+        window.removeEventListener('resize', this.updateSize)
     }
 
     createRandomPoints() {
@@ -43,7 +42,6 @@ export default class Voronoi extends React.Component {
 
     setCells(event) {
         this.setState({ cells: event.target.value }, () => {
-            this.count = 0
             this.createRandomPoints()
         })
     }
@@ -67,6 +65,7 @@ export default class Voronoi extends React.Component {
     updateSize() {
         this.canvas.width = this.canvas.parentElement.clientWidth
         this.canvas.height = window.innerHeight
+        this.createRandomPoints()
         this.draw()
     }
 
@@ -74,13 +73,7 @@ export default class Voronoi extends React.Component {
         return Math.floor(Math.random() * range)
     }
 
-    getHyp(x, y) {
-        this.count++
-        return Math.hypot(x, y)
-    }
-
     draw() {
-        this.count = 0
         const date = new Date()
         const ctx = this.canvas.getContext('2d')
         const cells = this.state.cells
@@ -93,7 +86,7 @@ export default class Voronoi extends React.Component {
             nc.push(COLORS[i % COLORS.length])
         }
         ctx.clearRect(0, 0, imgx, imgy)
-        const hyp = this.getHyp(imgx - 1, imgy - 1)
+        const hyp = Math.hypot(imgx - 1, imgy - 1)
         for (let y = 0; y < imgy; y++) {
             let d = {}
             this.getColorMapForRow(y, hyp, cells, nx, ny, 0, imgx, d)
@@ -112,14 +105,14 @@ export default class Voronoi extends React.Component {
             ctx.arc(nx[i], ny[i], 4, 0, Math.PI * 2)
             ctx.fill()
         }
-        this.setState({ stats: `${new Date() - date} ms - ${this.count} ops` })
+        this.setState({ stats: `${new Date() - date} ms` })
     }
 
     getColorKey(x, y, hyp, cells, nx, ny) {
         let dmin = hyp
         let j = -1
         for (let i = 0; i < cells; i++) {
-            const d = this.getHyp(nx[i] - x, ny[i] - y)
+            const d = Math.hypot(nx[i] - x, ny[i] - y)
             if (d < dmin) {
                 dmin = d
                 j = i

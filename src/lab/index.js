@@ -4,6 +4,7 @@ import Helvetica from './Helvetica/Helvetica'
 import { Link } from 'react-router-dom'
 import Linkbox from '../components/Linkbox'
 import Page from '../components/Page'
+import Particles from './Particles/Particles'
 import React from 'react'
 import Segment from './Segment/Segment'
 import SetGame from './Set/SetGame'
@@ -36,6 +37,11 @@ export const labRoutes = [
         title: 'Voronoi',
         path: 'voronoi',
         component: Voronoi
+    },
+    {
+        title: 'Particles',
+        path: 'particles',
+        component: Particles
     }
 ]
 
