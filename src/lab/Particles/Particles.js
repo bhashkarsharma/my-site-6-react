@@ -107,7 +107,6 @@ export default class Particles extends React.Component {
     }
 
     draw() {
-        // console.log('draw')
         const ctx = this.canvas.getContext('2d')
         ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         this.state.particles.forEach(i => this.drawParticle(ctx, i))
