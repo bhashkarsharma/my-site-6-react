@@ -30,7 +30,8 @@ const Resume = styled.div`
   }
 
   .note {
-    background: violet;
+    background: darkblue;
+    border-radius: 5px;
     color: white;
     padding: 10px;
     margin: 10px;
