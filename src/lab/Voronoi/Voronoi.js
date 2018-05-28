@@ -5,9 +5,9 @@ import React from 'react'
 import Title from '../../components/Title'
 
 const COLORS = ['#FFB300', '#803E75', '#FF6800', '#A6BDD7', '#C10020', '#CEA262', '#817066',
-'#007D34', '#F6768E', '#00538A', '#FF7A5C', '#53377A', '#FF8E00', '#B32851', '#FFFFFF',
-'#F4C800', '#7F180D', '#93AA00', '#593315', '#F13A13', '#232C16', '#0000FF', '#000000',
-'#FF0000', '#00FF00', '#FFFF00', '#FF00FF', '#FF8080', '#808080', '#800000', '#FF8000']
+    '#007D34', '#F6768E', '#00538A', '#FF7A5C', '#53377A', '#FF8E00', '#B32851', '#FFFFFF',
+    '#F4C800', '#7F180D', '#93AA00', '#593315', '#F13A13', '#232C16', '#0000FF', '#000000',
+    '#FF0000', '#00FF00', '#FFFF00', '#FF00FF', '#FF8080', '#808080', '#800000', '#FF8000']
 
 export default class Voronoi extends React.Component {
     constructor() {
@@ -162,7 +162,7 @@ export default class Voronoi extends React.Component {
                 <Title>Voronoi</Title>
                 <canvas
                     ref={can => { if (can !== null) this.canvas = can }}
-                    style={{border: '2px solid'}}
+                    style={{ border: '2px solid' }}
                     onClick={this.canvasClick}>
                 </canvas>
                 <div>{this.state.stats}</div>
@@ -174,9 +174,9 @@ export default class Voronoi extends React.Component {
                     {this.state.random ?
                         <div>
                             <input type="range"
-                                min="1" 
-                                max="20" 
-                                step="1" 
+                                min="0"
+                                max="20"
+                                step="1"
                                 value={this.state.cells}
                                 onChange={this.setCells} /> {this.state.cells}
                         </div> :

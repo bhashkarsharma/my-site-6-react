@@ -1,30 +1,90 @@
 import Helmet from 'react-helmet'
 import LabPage from '../../components/LabPage'
+import ModeSelector from '../../components/ModeSelector'
 import React from 'react'
 import Title from '../../components/Title'
+import styled from 'styled-components'
+
+const Label = styled.label`
+font-size: 0.75em;
+width: 150px;
+`
+
+const Value = styled.label`
+width: 50px;
+`
 
 export default class Particles extends React.Component {
     constructor() {
         super()
+        this.anim = null
         this.canvas = null
-        this.state = { particles: [], count: 50, speed: 1.5, size: 5, maxdist: 150 }
+        this.state = { particles: [], count: 50, speed: 1, size: 5, maxdist: 150 }
         this.updateSize = this.updateSize.bind(this)
+        this.updateParams = this.updateParams.bind(this)
+        this.updateCount = this.updateCount.bind(this)
+        this.updateMaxdist = this.updateMaxdist.bind(this)
+        this.updateSize = this.updateSize.bind(this)
+        this.updateSpeed = this.updateSpeed.bind(this)
     }
 
     componentDidMount() {
-        this.updateSize()
-        window.addEventListener('resize', this.updateSize)
-        this.generateParticles()
+        this.updateCanvasSize()
+        window.addEventListener('resize', this.updateCanvasSize)
     }
 
     componentWillUnmount() {
-        window.removeEventListener('resize', this.updateSize)
+        window.removeEventListener('resize', this.updateCanvasSize)
     }
 
-    updateSize() {
+    updateCanvasSize() {
         this.canvas.width = this.canvas.parentElement.clientWidth
         this.canvas.height = window.innerHeight
-        requestAnimationFrame(() => { this.draw() })
+        this.generateParticles()
+        this.anim = requestAnimationFrame(() => { this.draw() })
+    }
+
+    updateParams(count, maxdist, size, speed) {
+        this.setState({ count, maxdist, size, speed }, () => {
+            this.generateParticles()
+        })
+        this.anim = requestAnimationFrame(() => { this.draw() })
+    }
+
+    updateCount(event) {
+        this.updateParams(
+            event.target.value,
+            this.state.maxdist,
+            this.state.size,
+            this.state.speed
+        )
+    }
+
+    updateMaxdist(event) {
+        this.updateParams(
+            this.state.count,
+            event.target.value,
+            this.state.size,
+            this.state.speed
+        )
+    }
+
+    updateSize(event) {
+        this.updateParams(
+            this.state.count,
+            this.state.maxdist,
+            event.target.value,
+            this.state.speed
+        )
+    }
+
+    updateSpeed(event) {
+        this.updateParams(
+            this.state.count,
+            this.state.maxdist,
+            this.state.size,
+            event.target.value
+        )
     }
 
     getRand(min, max) {
@@ -99,7 +159,7 @@ export default class Particles extends React.Component {
                 const p2 = particles[j]
                 const dist = this.distParticles(p1, p2)
                 if (dist <= maxdist) {
-                    const width = 2 * (1 - dist / maxdist)
+                    const width = this.state.size * (1 - dist / maxdist) / 2
                     this.drawConnection(ctx, width, p1, p2)
                 }
             }
@@ -107,12 +167,13 @@ export default class Particles extends React.Component {
     }
 
     draw() {
+        if (this.anim !== null) cancelAnimationFrame(this.anim)
         const ctx = this.canvas.getContext('2d')
         ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         this.state.particles.forEach(i => this.drawParticle(ctx, i))
         this.drawConnections(ctx)
         this.state.particles.forEach(i => this.moveParticle(i))
-        requestAnimationFrame(() => { this.draw() })
+        this.anim = requestAnimationFrame(() => { this.draw() })
     }
 
     render() {
@@ -123,6 +184,48 @@ export default class Particles extends React.Component {
                     ref={can => { if (can !== null) this.canvas = can }}
                     style={{ border: '2px solid', background: 'black' }}>
                 </canvas>
+                <ModeSelector>
+                    <div>
+                        <Label>Count</Label>
+                        <input type="range"
+                            min="1"
+                            max="100"
+                            step="1"
+                            value={this.state.count}
+                            onChange={this.updateCount} />
+                        <Value>{this.state.count}</Value>
+                    </div>
+                    <div>
+                        <Label>Connection</Label>
+                        <input type="range"
+                            min="1"
+                            max="1000"
+                            step="1"
+                            value={this.state.maxdist}
+                            onChange={this.updateMaxdist} />
+                        <Value>{this.state.maxdist}</Value>
+                    </div>
+                    <div>
+                        <Label>Size</Label>
+                        <input type="range"
+                            min="1"
+                            max="50"
+                            step="1"
+                            value={this.state.size}
+                            onChange={this.updateSize} />
+                        <Value>{this.state.size}</Value>
+                    </div>
+                    <div>
+                        <Label>Speed</Label>
+                        <input type="range"
+                            min="1"
+                            max="50"
+                            step="1"
+                            value={this.state.speed}
+                            onChange={this.updateSpeed} />
+                        <Value>{this.state.speed}</Value>
+                    </div>
+                </ModeSelector>
                 <Helmet title="Particles" />
             </LabPage>
         )
