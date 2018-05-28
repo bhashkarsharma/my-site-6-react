@@ -48,23 +48,23 @@ export default () => (
     <p>I am passionate about the web and great user experiences.</p>
     <p>I spend a lot of time behind the keyboard. Sometimes writing for humans, mostly for computers.</p>
     <p>The excitement of learning new things is the reason I get out of bed in the morning.</p>
-    <p>You can find my <a href="http://static.bhashkar.me/Resume_Jan2017.pdf">resume</a> here.</p>
+    <p>You can find my <a href="/resume/">resume</a> here.</p>
     <p>Read about <Link to='/colophon/'>what went into making this site</Link>.</p>
     <Icons>
       <a href="https://twitter.com/bhashkarsharma">
-          <i className="fa fa-twitter"></i>
+        <i className="fa fa-twitter"></i>
       </a>
       <a href="https://linkedin.com/in/bhashkarsharma">
-          <i className="fa fa-linkedin"></i>
+        <i className="fa fa-linkedin"></i>
       </a>
       <a href="https://github.com/bhashkarsharma">
-          <i className="fa fa-github"></i>
+        <i className="fa fa-github"></i>
       </a>
       <a href="https://instagram.com/bhashkarsharma">
-          <i className="fa fa-instagram"></i>
+        <i className="fa fa-instagram"></i>
       </a>
       <a href="http://www.google.com/recaptcha/mailhide/d?k=01SDx7taNN6zHr16t_7ptUow==&c=9O4_ghKVlCH-WzZa1rp7YEyR4f9inkxWAIK9q55KjYs=">
-          <i className="fa fa-at"></i>
+        <i className="fa fa-at"></i>
       </a>
     </Icons>
     <Helmet title='About' />

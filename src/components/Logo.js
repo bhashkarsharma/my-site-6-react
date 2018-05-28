@@ -60,14 +60,17 @@ text-align: center;
         }
     }
 }
+@media print {
+    display: none;
+}
 `
 
-export default ({path, exact, ...props}) => (
+export default ({ path, exact, ...props }) => (
     <LogoBox>
         <div className="bg">
             <div className="logo">
-                <div className="letter"><div/><div/><div/><div/></div>
-                <div className="letter"><div/><div/><div/><div/></div>
+                <div className="letter"><div /><div /><div /><div /></div>
+                <div className="letter"><div /><div /><div /><div /></div>
             </div>
         </div>
     </LogoBox>

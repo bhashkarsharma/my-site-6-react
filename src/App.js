@@ -15,6 +15,7 @@ import NavLink from './components/NavLink'
 import NoMatch from './views/NoMatch'
 import Post from './views/Post'
 import React from 'react'
+import Resume from './views/Resume'
 import Wrapper from './components/Wrapper'
 import { labRoutes } from './lab'
 
@@ -40,7 +41,8 @@ const baseRoutes = [
   {
     title: 'ℹ️ About',
     path: '/about/',
-    component: About
+    component: About,
+    exact: true
   },
   {
     path: '/blog/*/',
@@ -49,6 +51,11 @@ const baseRoutes = [
   {
     path: '/colophon/',
     component: Colophon,
+    exact: true
+  },
+  {
+    path: '/resume/',
+    component: Resume,
     exact: true
   }
 ]
@@ -63,9 +70,9 @@ export default class App extends React.Component {
           {/* <Bg/> */}
           <Wrapper>
             <Helment titleTemplate={`%s - Bhashkar Sharma`} />
-            <Logo/>
+            <Logo />
             <Nav>
-              {routes.filter((i,e) => e < 4).map((route, i) => (
+              {routes.filter((i, e) => e < 4).map((route, i) => (
                 <NavLink key={i} {...route} />
               ))}
             </Nav>
