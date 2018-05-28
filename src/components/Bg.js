@@ -224,7 +224,7 @@ class CanvasApp {
                     x: newX,
                     y: newY
                 }
-		
+
                 //min, max
                 if (newY < minY) {
                     minY = newY
@@ -263,23 +263,9 @@ class CanvasApp {
 }
 
 const BgBox = styled.div`
-    height: 100%;
+    left: 0;
     position: fixed;
     width: 100%;
-    z-index: -1;
-    canvas {
-        mask-image: -webkit-gradient(linear, left top, right top,
-            color-stop(0.00,  rgba(0,0,0,1)),
-            color-stop(0.25,  rgba(0,0,0,0)),
-            color-stop(0.75,  rgba(0,0,0,0)),
-            color-stop(1.00,  rgba(0,0,0,1)));
-    }
-    @media (max-width: 480px) {
-        canvas {
-            mask-image: none;
-            opacity: 0.25;
-        }
-    }
 `
 
 export default class Bg extends React.Component {
@@ -310,9 +296,9 @@ export default class Bg extends React.Component {
 
     render() {
         return (
-	    <BgBox>
+            <BgBox>
                 <canvas ref={can => { this.canvas = can }}></canvas>
-	    </BgBox>
+            </BgBox>
         )
     }
 }
