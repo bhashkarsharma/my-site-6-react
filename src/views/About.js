@@ -48,7 +48,7 @@ export default () => (
     <p>I am passionate about the web and great user experiences.</p>
     <p>I spend a lot of time behind the keyboard. Sometimes writing for humans, mostly for computers.</p>
     <p>The excitement of learning new things is the reason I get out of bed in the morning.</p>
-    <p>You can find my <a href="/resume/">resume</a> here.</p>
+    <p>You can find my <Link to="/resume/">resume</Link> here.</p>
     <p>Read about <Link to='/colophon/'>what went into making this site</Link>.</p>
     <Icons>
       <a href="https://twitter.com/bhashkarsharma">
