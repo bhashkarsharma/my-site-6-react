@@ -277,7 +277,7 @@ export default () => (
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href="info@bhashkar.me"
+                href="mailto:info@bhashkar.me"
               >
                 <span className="icon">
                   <i className="fa fa-envelope" />
