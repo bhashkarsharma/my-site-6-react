@@ -180,11 +180,9 @@ const Resume = styled.div`
     line-height: 1.3;
     width: 210mm;
 
-    .contact {
-      .section {
-        a {
-          color: #333;
-        }
+    .section {
+      a {
+        color: #333;
       }
     }
 
